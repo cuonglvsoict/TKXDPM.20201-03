@@ -21,5 +21,5 @@
 ## Revisions
 * Task1 (review by Lã Văn Dân): cơ bản hoàn thành được các vấn đề, Usecase tổng quan đầy đủ các chức năng theo file mô tả EcobikeRental.
 * Task2 (review by Lê Văn Cường): phần đặc tả đầy đủ, đúng template. 
-* Task3 (review by Bùi Tiến Đạt): 
-* Task4 (review by Nguyễn Trọng Chinh): 
+* Task3 (review by Bùi Tiến Đạt): đã hoàn thiện các nội dung yêu cầu.
+* Task4 (review by Nguyễn Trọng Chinh): hoàn thiện tốt phần đặc tả use case "Trả xe".
