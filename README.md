@@ -1,8 +1,8 @@
 # TKXDPM.20201-03
 ## Danh sách cách thành viên
 - Lê Văn Cường - 20172987
-- Lã Văn Dân - 20177021
-- Bùi Tiến Đạt - 20177023
+- Lã Văn Dân - 20177023
+- Bùi Tiến Đạt - 20177024
 - Nguyễn Trọng Chinh - 20172980
 ---
  
