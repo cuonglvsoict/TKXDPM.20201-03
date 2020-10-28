@@ -4,6 +4,23 @@
 - Lã Văn Dân - 20177023
 - Bùi Tiến Đạt - 20177024
 - Nguyễn Trọng Chinh - 20172980
+
+---
+
+# LAB 01 - Design EcobikeRental
+## Tasks
+* Thiết kế biểu đồ tương tác.
+* Thiết kế biểu đồ lớp phân tích và biểu đồ lớp gộp.
+* Thiết kế giao diện người dùng đồ họa và giao diện với hệ thống khác.
+
+## Contributions
+* Nguyễn Trọng Chinh: phụ trách usecase "Rent bike".
+* Lã Văn Dân: phụ trách usecase "Return bike".
+* Bùi Tiến Đạt: phụ trách usecase "View bike/bike station".
+* Lê Văn Cường: phụ trách usecase "Pay order", gộp các biểu đồ lớp phân tích.
+
+## Revisions
+
 ---
  
 # LAB 00 - SRS EcobikeRental
