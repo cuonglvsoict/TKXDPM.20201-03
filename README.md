@@ -7,7 +7,7 @@
 
 ---
 
-# LAB 01 - Architectural Design
+# LAB 01 - Architectural & Interface Design
 ## Tasks
 * Thiết kế biểu đồ tương tác.
 * Thiết kế biểu đồ lớp phân tích và biểu đồ lớp gộp.
