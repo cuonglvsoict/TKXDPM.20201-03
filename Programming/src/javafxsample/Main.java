@@ -1,4 +1,4 @@
-package ecobikerental.sample;
+package javafxsample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
