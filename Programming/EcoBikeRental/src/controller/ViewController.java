@@ -2,7 +2,7 @@ package controller;
 
 public class ViewController {
 
-	public ViewController() {
+	public boolean checkRentStatus(int ID) {
 		
 	}
 	

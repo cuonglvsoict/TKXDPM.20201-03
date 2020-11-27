@@ -1,5 +1,5 @@
 package model;
 
-public class Bike {
+public abstract class Bike {
 
 }
