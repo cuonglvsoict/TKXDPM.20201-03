@@ -7,11 +7,48 @@
 
 ---
 
-# LAB 01 - Architectural & Interface Design
+# LAB 03 - Programming
+## Tasks
+* Lập trình theo bản thiết kế đã có
+
+## Contributions
+* Nguyễn Trọng Chinh: phụ trách usecase "Rent bike".
+* Lã Văn Dân: phụ trách usecase "Return bike".
+* Bùi Tiến Đạt: phụ trách usecase "View bike/bike station".
+* Lê Văn Cường: tạo project, phụ trách usecase "Pay order".
+
+## Revisions
+* Nguyễn Trọng Chinh (review by Cường):
+* Lã Văn Dân (review by Chinh):
+* Bùi Tiến Đạt (review by Dân):
+* Lê Văn Cường (review by Chinh):
+
+---
+
+# LAB 02 - Detailed Design
+## Tasks
+* Thiết kế giao diện người dùng đồ họa và giao diện với hệ thống khác.
+* Thiết kế chi tiết các lớp
+* Thiết kế cơ sở dữ liệu
+
+## Contributions
+* Nguyễn Trọng Chinh: phụ trách usecase "Rent bike".
+* Lã Văn Dân: phụ trách usecase "Return bike".
+* Bùi Tiến Đạt: phụ trách usecase "View bike/bike station".
+* Lê Văn Cường: phụ trách usecase "Pay order".
+
+## Revisions
+* Nguyễn Trọng Chinh (review by Cường): hoàn thành đầy đủ nội dung được giao.
+* Lã Văn Dân (review by Chinh): thiết kế giao diện ok, hoàn thiện tương đối tốt công việc được giao.
+* Bùi Tiến Đạt (review by Dân): vẽ đầy đủ các biểu đồ được giao, giao diện đẹp.
+* Lê Văn Cường (review by Chinh): hoàn thành đầy đủ công việc được giao.
+
+---
+
+# LAB 01 - Architectural design
 ## Tasks
 * Thiết kế biểu đồ tương tác.
 * Thiết kế biểu đồ lớp phân tích và biểu đồ lớp gộp.
-* Thiết kế giao diện người dùng đồ họa và giao diện với hệ thống khác.
 
 ## Contributions
 * Nguyễn Trọng Chinh: phụ trách usecase "Rent bike".
@@ -20,6 +57,10 @@
 * Lê Văn Cường: phụ trách usecase "Pay order", gộp các biểu đồ lớp phân tích.
 
 ## Revisions
+* Nguyễn Trọng Chinh (review by Cường): hoàn thành đầy đủ nội dung được giao.
+* Lã Văn Dân (review by Chinh): hoàn thiện tương đối tốt công việc được giao.
+* Bùi Tiến Đạt (review by Dân): vẽ đầy đủ các biểu đồ được giao.
+* Lê Văn Cường (review by Chinh): hoàn thành đầy đủ và đúng deadline công việc được giao.
 
 ---
  
