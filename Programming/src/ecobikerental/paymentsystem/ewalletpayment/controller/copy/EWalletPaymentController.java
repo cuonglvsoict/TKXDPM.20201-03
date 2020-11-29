@@ -1,9 +1,8 @@
-package ecobikerental.paymentsystem.creditcardpayment.controller;
+package ecobikerental.paymentsystem.ewalletpayment.controller.copy;
 
 import ecobikerental.paymentsystem.PaymentSystemInterface;
-import ecobikerental.paymentsystem.creditcardpayment.entity.CreditCard;
 
-public class CreditCardPaymentController implements PaymentSystemInterface {
+public class EWalletPaymentController implements PaymentSystemInterface {
 
 	@Override
 	public boolean processRentBikePayOrder(String bikeId, int amount) {
@@ -23,7 +22,4 @@ public class CreditCardPaymentController implements PaymentSystemInterface {
 
 	}
 
-	public void checkCardInUsed(CreditCard card) {
-
-	}
 }

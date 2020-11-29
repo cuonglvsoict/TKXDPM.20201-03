@@ -14,7 +14,8 @@ public class Test extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		URL url = Paths.get("src/ecobikerental/paymentsystem/creditcardpayment/boundary/CreditCardPaymentForm.fxml").toUri().toURL();
+		URL url = Paths.get("src/ecobikerental/paymentsystem/creditcardpayment/boundary/CreditCardPaymentForm.fxml")
+				.toUri().toURL();
 		Parent root = FXMLLoader.load(url);
 		primaryStage.setTitle("Thông tin thanh toán");
 		primaryStage.setScene(new Scene(root, 600, 400));

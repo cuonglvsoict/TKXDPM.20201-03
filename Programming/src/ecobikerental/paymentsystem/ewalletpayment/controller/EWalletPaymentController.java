@@ -19,7 +19,7 @@ public class EWalletPaymentController implements PaymentSystemInterface {
 	@Override
 	public void processCheckBalanceRequest() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

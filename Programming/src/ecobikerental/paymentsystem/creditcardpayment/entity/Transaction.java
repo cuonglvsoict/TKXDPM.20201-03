@@ -1,21 +1,21 @@
 package ecobikerental.paymentsystem.creditcardpayment.entity;
 
 public class Transaction {
-	
+
 	private String command;
 	private CreditCard card;
 	private String transactionContent;
 	private int amount;
-	
+
 	public Transaction() {
-		
+
 	}
-	
+
 	public Transaction(String command, CreditCard card, String content, int amount) {
 		this.setCommand(command);
 		this.setCard(card);
 		this.setTransactionContent(content);
-		this.setAmount(amount);	
+		this.setAmount(amount);
 	}
 
 	public String getCommand() {
@@ -50,5 +50,4 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	
 }

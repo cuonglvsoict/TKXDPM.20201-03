@@ -1,16 +1,16 @@
 package ecobikerental.paymentsystem.creditcardpayment.entity;
 
 public class CreditCard {
-	
+
 	private String cardCode;
 	private String owner;
 	private String cvvCode;
 	private String dateExpired;
-	
+
 	public CreditCard() {
-		
+
 	}
-	
+
 	public CreditCard(String cardCode, String cardOwner, String cvvCode, String dateExp) {
 		this.setCardCode(cardCode);
 		this.setOwner(cardOwner);
