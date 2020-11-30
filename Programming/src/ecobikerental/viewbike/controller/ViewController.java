@@ -1,5 +1,6 @@
 package ecobikerental.viewbike.controller;
 
+import ecobikerental.viewbike.gui.BikeInfoScreen;
 import ecobikerental.viewbike.gui.MapScreen;
 import ecobikerental.viewbike.model.Bike;
 import ecobikerental.viewbike.model.Customer;
@@ -28,8 +29,8 @@ public class ViewController {
 	
 	private void displayBike(int customerID) {
 		Bike bike = new Bike(customerID);
-		bike.display();
+		BikeInfoScreen BikeScreen = new BikeInfoScreen(bike);
+		BikeInfoScreen.display();
 	}
-	
 	
 }
