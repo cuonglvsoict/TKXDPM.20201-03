@@ -97,9 +97,9 @@
       </GridPane>
       <Pane layoutX="38.0" layoutY="58.0" prefHeight="32.0" prefWidth="529.0">
          <children>
-            <Label layoutX="180.0" layoutY="4.0" text="Payment information">
+            <Label layoutY="6.0" text="Please fulfill the form below to continue">
                <font>
-                  <Font name="Arial Bold" size="17.0" />
+                  <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
          </children>

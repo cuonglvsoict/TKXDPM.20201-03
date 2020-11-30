@@ -15,7 +15,7 @@
 * Nguyễn Trọng Chinh: phụ trách usecase "Rent bike".
 * Lã Văn Dân: phụ trách usecase "Return bike".
 * Bùi Tiến Đạt: phụ trách usecase "View bike/bike station".
-* Lê Văn Cường: tạo project, phụ trách usecase "Pay order".
+* Lê Văn Cường: setup project, phụ trách usecase "Pay order".
 
 ## Revisions
 * Nguyễn Trọng Chinh (review by Cường):

@@ -1,5 +1,7 @@
 package ecobikerental.paymentsystem;
 
+import javafx.stage.Stage;
+
 /**
  * The {@code PaymentSystemInterface} ...
  * @author vancuonglee
@@ -8,7 +10,7 @@ package ecobikerental.paymentsystem;
  */
 public interface PaymentSystemInterface {
 	
-	public boolean processRentBikePayOrder(String bikeId, int amount);
-	public boolean processReturnBikePayOrder(String bikeId, int amount);
-	public void processCheckBalanceRequest();
+	public boolean processRentBikePayOrder(Stage primaryStage);
+	public boolean processReturnBikePayOrder(Stage primaryStage);
+	public void processCheckBalanceRequest(Stage primaryStage);
 }
