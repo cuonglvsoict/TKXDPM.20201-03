@@ -1,24 +1,23 @@
-package ecobikerental.paymentsystem.ewalletpayment.controller;
+package ecobikerental.paymentsystem.ewalletpayment.controller.copy;
 
 import ecobikerental.paymentsystem.PaymentSystemInterface;
-import javafx.stage.Stage;
 
 public class EWalletPaymentController implements PaymentSystemInterface {
 
 	@Override
-	public boolean processRentBikePayOrder(Stage primaryStage) {
+	public boolean processRentBikePayOrder(String bikeId, int amount) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean processReturnBikePayOrder(Stage primaryStage) {
+	public boolean processReturnBikePayOrder(String bikeId, int amount) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void processCheckBalanceRequest(Stage primaryStage) {
+	public void processCheckBalanceRequest() {
 		// TODO Auto-generated method stub
 
 	}
