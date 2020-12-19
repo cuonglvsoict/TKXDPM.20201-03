@@ -63,10 +63,11 @@ public class CreditCardPaymentConfirmHandler extends BaseScreenHandler implement
 	@FXML
 	void handleConfirmButtonAction(ActionEvent event) {
 		PaymentController controller = (PaymentController) this.getbController();
-		boolean result = controller.processPayOrder((PaymentInfo) AppData.getAttribute("payment_info"),
+		String paymentResultNotif = controller.processPayOrder((PaymentInfo) AppData.getAttribute("payment_info"),
 				(int) AppData.getAttribute("amount"));
-		AppData.setAttribute("payment_result", result);
-		
+
+		AppData.setAttribute("payment_result_notif", paymentResultNotif);
+
 		CreditCardPaymentResultHandler paymentResultHandler;
 		try {
 			paymentResultHandler = new CreditCardPaymentResultHandler(this.getPrimaryStage(),
@@ -76,7 +77,7 @@ public class CreditCardPaymentConfirmHandler extends BaseScreenHandler implement
 			paymentResultHandler.show();
 		} catch (IOException ex) {
 			// TODO Auto-generated catch block
-				logger.info("Error ocurred! " + ex.getMessage());
+			logger.info("Error ocurred! " + ex.getMessage());
 		}
 	}
 
@@ -91,5 +92,4 @@ public class CreditCardPaymentConfirmHandler extends BaseScreenHandler implement
 		this.amount.setText(utils.Utils.formatCurrency(amount) + " " + Configs.CURRENCY);
 		transactionContent.setText(info.getTransactionContent());
 	}
-
 }

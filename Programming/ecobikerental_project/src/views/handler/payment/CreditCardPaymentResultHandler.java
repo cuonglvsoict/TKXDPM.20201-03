@@ -53,18 +53,7 @@ public class CreditCardPaymentResultHandler extends BaseScreenHandler implements
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		boolean paymentResult = (boolean) AppData.getAttribute("payment_result");
-		
-		String notif;
-		if (paymentResult) {
-			// success pay order
-			notif = "Payment accepted! Your bike has been unlocked!!!";
-		} else {
-			// transaction failed
-			notif = "Payment failed, please verify your infomation and try again :((";
-		}
-		
-		this.paymentResult.setText(notif);
+		this.paymentResult.setText((String) AppData.getAttribute("payment_result_notif"));
 	}
 
 }

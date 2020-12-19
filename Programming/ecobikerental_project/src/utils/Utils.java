@@ -1,6 +1,7 @@
 package utils;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -34,6 +35,11 @@ public class Utils {
 	public static String formatDateTime(Date date, String format) {
 		SimpleDateFormat formatter = new SimpleDateFormat(Configs.DATETIME_FORMAT);
 		return formatter.format(date);
+	}
+	
+	public static Date parseDateTime(String datetime, String format) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat(format);
+		return formatter.parse(datetime);
 	}
 	
 	public static String getToday() {

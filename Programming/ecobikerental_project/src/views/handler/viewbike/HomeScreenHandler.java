@@ -47,6 +47,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 			try {
 				// for dev only
 				AppData.setAttribute("amount", 400000);
+				AppData.setAttribute("bike_id", "RB001");
 				
 				// switch to payment form
 				paymentHandler = new CreditCardPaymentFormHandler(this.getPrimaryStage(),
