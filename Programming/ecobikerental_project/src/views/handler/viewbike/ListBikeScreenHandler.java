@@ -45,6 +45,14 @@ public class ListBikeScreenHandler extends BaseScreenHandler implements Initiali
 	@FXML
 	private Button rentBikeButton;
 
+	@FXML
+	private Button returnBike;
+
+	@FXML
+	void handleReturnBikeButtonAction(ActionEvent event) {
+
+	}
+
 	public ListBikeScreenHandler(Stage primaryStage, String fxmlPath) throws IOException {
 		this(primaryStage, fxmlPath, new HomeController());
 	}

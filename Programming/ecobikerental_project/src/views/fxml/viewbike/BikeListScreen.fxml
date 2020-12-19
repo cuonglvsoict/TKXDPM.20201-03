@@ -39,18 +39,19 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Pane layoutX="343.0" layoutY="325.0" prefHeight="57.0" prefWidth="200.0">
+      <Pane layoutX="259.0" layoutY="325.0" prefHeight="57.0" prefWidth="284.0">
          <children>
-            <Button fx:id="backButton" layoutX="37.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="25.0" prefWidth="76.0" text="Back">
+            <Button fx:id="backButton" layoutX="28.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="25.0" prefWidth="76.0" text="Back">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="rentBikeButton" defaultButton="true" layoutX="124.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleRentBikeButtonAction" prefHeight="25.0" prefWidth="76.0" text="Rent bike">
+            <Button fx:id="rentBikeButton" defaultButton="true" layoutX="208.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleRentBikeButtonAction" prefHeight="25.0" prefWidth="76.0" text="Rent bike">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+            <Button fx:id="returnBike" layoutX="117.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleReturnBikeButtonAction" prefHeight="25.0" prefWidth="78.0" text="Return bike" />
          </children>
       </Pane>
       <Label fx:id="stationAddress" layoutX="57.0" layoutY="83.0" text="address">

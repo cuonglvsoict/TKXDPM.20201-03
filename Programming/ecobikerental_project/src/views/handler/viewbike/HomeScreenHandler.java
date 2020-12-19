@@ -31,8 +31,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 	@FXML
 	private ListView<?> stationList;
 
-	@FXML
-	private Button rentBikeButton;
+//	@FXML
+//	private Button rentBikeButton;
 
 	@FXML
 	void onMouseClickedHandler(MouseEvent event) {
@@ -54,19 +54,19 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 		}
 	}
 
-	@FXML
-	void handleRentBikeButtonAction(ActionEvent event) {
-		GetBarcodeScreenHandler barcodeHandler;
-		try {
-			barcodeHandler = new GetBarcodeScreenHandler(this.getPrimaryStage(), Configs.GET_BARCODE_SCREEN);
-			barcodeHandler.setHomeScreenHandler(this);
-			barcodeHandler.setPreviousHandler(this);
-			barcodeHandler.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	@FXML
+//	void handleRentBikeButtonAction(ActionEvent event) {
+//		GetBarcodeScreenHandler barcodeHandler;
+//		try {
+//			barcodeHandler = new GetBarcodeScreenHandler(this.getPrimaryStage(), Configs.GET_BARCODE_SCREEN);
+//			barcodeHandler.setHomeScreenHandler(this);
+//			barcodeHandler.setPreviousHandler(this);
+//			barcodeHandler.show();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	public HomeScreenHandler(Stage primaryStage, String fxmlPath) throws IOException {
 		this(primaryStage, fxmlPath, new HomeController());
