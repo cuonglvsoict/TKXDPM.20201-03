@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import db.DBConnection;
 import entities.AppData;
+import entities.bike.Bike;
 import entities.payment.PaymentInfo;
 import entities.payment.Transaction;
 import subsystem.payment.PaymentSubsystemBoundary;
@@ -28,19 +29,19 @@ public class PaymentController extends BaseController {
 			HashMap<String, Object> paymentResult = paymentSystem.processPayOrderRequest(paymentInfo, amount);
 			responseCode = (String) paymentResult.get("error_code");
 
-			if (!responseCode.equals("00")) {
-				this.getLOGGER().info("transaction Failed! Error code " + responseCode);
+			if (responseCode.equals("00")) {
+				this.getLOGGER().info("Successful transaction");
 
 				// save info to db
 				DBConnection conn = DBConnection.getDBConnection();
-				String bikeId = (String) AppData.getAttribute("bike_id");
+				Bike bike = (Bike) AppData.getAttribute("bike");
 				Transaction trans = (Transaction) paymentResult.get("transaction");
 
-				conn.setBikeAvailability(bikeId, false);
-				int orderId = conn.addOrder(trans.getCardCode(), bikeId, trans.getCreatedAt());
+				conn.updateBike(bike.getBikeId(), bike.getStationId(), false);
+				int orderId = conn.addOrder(trans.getCardCode(), bike.getBikeId(), trans.getCreatedAt());
 				conn.saveTransaction(trans, orderId);
 			} else {
-				this.getLOGGER().info("Successful transaction");
+				this.getLOGGER().info("transaction Failed! Error code " + responseCode);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -58,23 +59,23 @@ public class PaymentController extends BaseController {
 			HashMap<String, Object> paymentResult = paymentSystem.processRefundRequest(paymentInfo, amount);
 			responseCode = (String) paymentResult.get("error_code");
 
-			if (!responseCode.equals("00")) {
-				this.getLOGGER().info("transaction Failed! Error code " + responseCode);
+			if (responseCode.equals("00")) {
+				this.getLOGGER().info("Successful transaction");
 
 				// save info to db
 				DBConnection conn = DBConnection.getDBConnection();
-				String bikeId = (String) AppData.getAttribute("bike_id");
+				Bike bike = (Bike) AppData.getAttribute("bike");
 				Transaction trans = (Transaction) paymentResult.get("transaction");
 
-				conn.setBikeAvailability(bikeId, false);
-				int orderId = conn.addOrder(trans.getCardCode(), bikeId, trans.getCreatedAt());
+				conn.updateBike(bike.getBikeId(), bike.getStationId(), true);
+				int orderId = conn.addOrder(trans.getCardCode(), bike.getBikeId(), trans.getCreatedAt());
 				conn.saveTransaction(trans, orderId);
 			} else {
 				this.getLOGGER().info("Successful transaction");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			this.getLOGGER().info("Error occurred!" + e.getMessage());
+			this.getLOGGER().info("transaction Failed! Error code " + responseCode);
 		}
 
 		return this.getPaymentResultMessage(responseCode);

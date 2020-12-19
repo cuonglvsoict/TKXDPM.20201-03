@@ -1,5 +1,7 @@
 import java.io.IOException;
 
+import entities.bike.Bike;
+import entities.bike.feescalculator.FeesCalculator01;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +48,7 @@ public class Main extends Application {
 		fadeOut.setOnFinished((e) -> {
 			HomeScreenHandler viewBikeHandler;
 			try {
-				viewBikeHandler = new HomeScreenHandler(primaryStage, Configs.VIEW_BIKE_SCREEN);
+				viewBikeHandler = new HomeScreenHandler(primaryStage, Configs.STATION_LIST_SCREEN);
 				viewBikeHandler.setSceneTitle("EcoBikeRental");
 				viewBikeHandler.show();
 			} catch (IOException e1) {
@@ -58,6 +60,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		Bike.setFeesCal(new FeesCalculator01());
 		launch(args);
 	}
 

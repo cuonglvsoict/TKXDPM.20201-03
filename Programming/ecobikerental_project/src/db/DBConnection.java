@@ -8,10 +8,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import entities.Station;
 import entities.bike.Bike;
+import entities.bike.ETandemBike;
+import entities.bike.RoadBike;
+import entities.bike.TandemBike;
 import entities.payment.Transaction;
 import utils.Configs;
 
@@ -21,12 +26,13 @@ public class DBConnection {
 	private Connection connection;
 
 	private final String SQL_INSERT_TRANSACTION = "insert into transaction (order_id, card_id, amount, command, created_at, content) values (?, ?, ?, ?, ?, ?);";
-	private final String SQL_SET_BIKE_AVAIL = "update bike set available = ? where bike_id = ?;";
+	private final String SQL_SET_BIKE_STATUS = "update bike set available = ?, station_id = ? where bike_id = ?;";
 	private final String SQL_INSERT_RENTAL_ORDER = "insert into rental_orders (card_id, bike_id, start_time) values (?, ?, ?);";
 	private final String SQL_UPDATE_RENTAL_ORDER = "update rental_orders set is_return = TRUE, return_time = ?, rental_fees = ? where bike_id = ? and is_return = FALSE;";
 	private final String SQL_CHECK_CARD_IN_USED = "select * from rental_orders where card_id = ? and is_return = false";
 	private final String SQL_GET_ALL_STATION = "select * from station;";
-	private final String SQL_GET_BIKES_BY_STATION = "select * from bike when station_id = ?";
+	private final String SQL_GET_BIKES_BY_STATION = "select * from bike where station_id = ? and available = TRUE";
+	private final String SQL_GET_BIKE_BY_ID = "select * from bike where bike_id = ?";
 
 	private DBConnection() {
 		try {
@@ -63,11 +69,12 @@ public class DBConnection {
 		}
 	}
 
-	public void setBikeAvailability(String bikeId, boolean newStatus) {
+	public void updateBike(String bikeId, String stationId, boolean newStatus) {
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(SQL_SET_BIKE_AVAIL);
+			PreparedStatement preparedStatement = connection.prepareStatement(SQL_SET_BIKE_STATUS);
 			preparedStatement.setBoolean(1, newStatus);
-			preparedStatement.setString(2, bikeId);
+			preparedStatement.setString(2, stationId);
+			preparedStatement.setString(3, bikeId);
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -142,11 +149,30 @@ public class DBConnection {
 			preparedStatement.setString(1, stationID);
 
 			ResultSet result = preparedStatement.executeQuery();
-			Bike bike = null;
+			bikes = new ArrayList<Bike>();
 			while (result.next()) {
 				int bikeType = result.getInt("bike_type");
-				// bike = new Bike() ...
-				// bikes.add(bike);
+				Bike bike = null;
+				switch (bikeType) {
+				case 1: {
+					bike = new RoadBike();
+					break;
+				}
+				case 2: {
+					bike = new TandemBike();
+					break;
+				}
+				case 3: {
+					bike = new ETandemBike();
+					break;
+				}
+				}
+				
+				bike.setBikeId(result.getString("bike_id"));
+				bike.setBikeName(result.getString("bike_name"));
+				bike.setStationId(result.getString("station_id"));
+				bike.setAvailable(true);
+				bikes.add(bike);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -155,8 +181,64 @@ public class DBConnection {
 		return bikes;
 	}
 	
-	public void getAllStation() {
+	public List<Station> getAllStation() {
+		List<Station> stations = null;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_ALL_STATION);
+			ResultSet result = preparedStatement.executeQuery();
+			stations = new ArrayList<Station>();
+			
+			while (result.next()) {
+				Station station = new Station();
+				station.setAddress(result.getString("address"));
+				station.setStationId(result.getString("station_id"));
+				station.setStationName(result.getString("station_name"));
+				stations.add(station);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		return stations;
+	}
+	
+	public Bike getBikeById(String bikeId) {
+		Bike bike = null;
+		try {
+			ResultSet result = null;
+			PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_BIKE_BY_ID);
+			preparedStatement.setString(1, bikeId);
+
+			result = preparedStatement.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				result.next();
+				int bikeType = result.getInt("bike_type");
+				switch (bikeType) {
+				case 1: {
+					bike = new RoadBike();
+					break;
+				}
+				case 2: {
+					bike = new TandemBike();
+					break;
+				}
+				case 3: {
+					bike = new ETandemBike();
+					break;
+				}
+				}
+				bike.setBikeId(result.getString("bike_id"));
+				bike.setBikeName(result.getString("bike_name"));
+				bike.setStationId(result.getString("station_id"));
+				bike.setAvailable(true);
+			} 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bike;
 	}
 
 	public static void main(String[] args) {
@@ -170,7 +252,7 @@ public class DBConnection {
 		String bikeId = "RB001";
 
 		DBConnection conn = DBConnection.getDBConnection();
-		conn.setBikeAvailability(bikeId, false);
+		conn.updateBike(bikeId, "S002", false);
 		int orderId = conn.addOrder(trans.getCardCode(), bikeId, trans.getCreatedAt());
 		conn.saveTransaction(trans, orderId);
 		

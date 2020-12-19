@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -34,17 +35,19 @@
       </HBox>
       <Pane layoutX="353.0" layoutY="335.0" prefHeight="57.0" prefWidth="200.0">
          <children>
-            <Button fx:id="backButton" layoutX="27.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="25.0" prefWidth="76.0" text="Back">
+            <Button fx:id="backButton" layoutX="27.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="25.0" prefWidth="76.0" text="Back">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="rentBikeButton" defaultButton="true" layoutX="114.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleRentBikeButtonAction" prefHeight="25.0" prefWidth="76.0" text="Rent bike">
+            <Button fx:id="rentButton" defaultButton="true" layoutX="114.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleRentButtonAction" prefHeight="25.0" prefWidth="76.0" text="Rent">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
          </children>
       </Pane>
+      <Label layoutX="62.0" layoutY="99.0" text="Please enter the barcode:" />
+      <TextField fx:id="barcode" layoutX="212.0" layoutY="96.0" prefHeight="25.0" prefWidth="331.0" />
    </children>
 </Pane>

@@ -1,5 +1,66 @@
 package entities.bike;
 
-public abstract class Bike {
+import entities.bike.feescalculator.FeesCalculatorInterface;
 
+public abstract class Bike {
+	
+	private String bikeId;
+	private String stationId;
+	private String bikeName;
+	private int bikeType;
+	private boolean available;
+	protected static FeesCalculatorInterface feesCal;
+	
+	public Bike(int bikeType) {
+		this.bikeType = bikeType;
+	}
+	
+	public String getBikeId() {
+		return bikeId;
+	}
+
+	public void setBikeId(String bikeId) {
+		this.bikeId = bikeId;
+	}
+
+	public String getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(String stationId) {
+		this.stationId = stationId;
+	}
+
+	public String getBikeName() {
+		return bikeName;
+	}
+
+	public void setBikeName(String bikeName) {
+		this.bikeName = bikeName;
+	}
+
+	public int getBikeType() {
+		return bikeType;
+	}
+
+	public void setBikeType(int bikeType) {
+		this.bikeType = bikeType;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	public static FeesCalculatorInterface getFeesCal() {
+		return feesCal;
+	}
+
+	public static void setFeesCal(FeesCalculatorInterface feesCal) {
+		Bike.feesCal = feesCal;
+	}
+	
 }

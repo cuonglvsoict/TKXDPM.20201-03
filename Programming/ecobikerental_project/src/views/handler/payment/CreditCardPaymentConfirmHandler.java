@@ -64,7 +64,7 @@ public class CreditCardPaymentConfirmHandler extends BaseScreenHandler implement
 	void handleConfirmButtonAction(ActionEvent event) {
 		PaymentController controller = (PaymentController) this.getbController();
 		String paymentResultNotif = controller.processPayOrder((PaymentInfo) AppData.getAttribute("payment_info"),
-				(int) AppData.getAttribute("amount"));
+				(int) AppData.getAttribute("deposit"));
 
 		AppData.setAttribute("payment_result_notif", paymentResultNotif);
 
@@ -85,7 +85,7 @@ public class CreditCardPaymentConfirmHandler extends BaseScreenHandler implement
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		PaymentInfo info = (PaymentInfo) AppData.getAttribute("payment_info");
-		int amount = (int) AppData.getAttribute("amount");
+		int amount = (int) AppData.getAttribute("deposit");
 
 		cardCode.setText(info.getCardCode());
 		cardHolderName.setText(info.getOwner());

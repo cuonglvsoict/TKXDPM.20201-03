@@ -27,5 +27,8 @@ public class Configs {
 	public static final String CREDIT_CARD_PAYMENT_RESULT = "src/views/fxml/payment/CreditCardPaymentResult.fxml";
 	public static final String SPLASH_SCREEN = "views/fxml/SplashScreen.fxml";
 	public static final String VIEW_BIKE_SCREEN = "src/views/fxml/viewbike/ViewBikeScreen.fxml";
-
+	public static final String STATION_LIST_SCREEN = "src/views/fxml/viewbike/StationListScreen.fxml";
+	public static final String BIKE_LIST_SCREEN = "src/views/fxml/viewbike/BikeListScreen.fxml";
+	public static final String GET_BARCODE_SCREEN = "src/views/fxml/rentbike/EnterBarcodeScreen.fxml";
+	public static final String RENT_ORDER_CONFIRM_SCREEN = "src/views/fxml/rentbike/RentalOrderConfirmScreen.fxml";
 }
