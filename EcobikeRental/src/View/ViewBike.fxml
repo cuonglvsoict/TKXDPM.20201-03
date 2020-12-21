@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ViewBikeController">
+    <children>
+        <HBox prefHeight="119.0" prefWidth="900.0" style="-fx-background-color: #eee;">
+            <children>
+                <Pane prefHeight="119.0" prefWidth="136.0" style="-fx-background-color: #e53935;">
+                    <children>
+                        <ImageView fitHeight="105.0" fitWidth="103.0" layoutX="16.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../assets/2x/baseline_directions_bike_white_24dp.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Pane prefHeight="119.0" prefWidth="643.0" style="-fx-background-color: #e53935;">
+                    <children>
+                        <Label alignment="CENTER" layoutX="142.0" layoutY="27.0" prefHeight="66.0" prefWidth="302.0" style="-fx-font-weight: bold;" text="EcobikeRental" textFill="WHITE">
+                            <font>
+                                <Font size="30.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Pane prefHeight="119.0" prefWidth="123.0" style="-fx-background-color: #e53935;">
+                    <children>
+                        <Label fx:id="username" layoutX="12.0" layoutY="84.0" style="-fx-font-weight: bold;" text="chinhnt" textFill="WHITE">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="66.0" fitWidth="83.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../assets/2x/baseline_account_circle_white_48dp.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+            </children>
+        </HBox>
+        <HBox layoutY="119.0" prefHeight="482.0" prefWidth="900.0">
+            <children>
+                <Pane prefHeight="482.0" prefWidth="525.0">
+                    <children>
+                        <Label layoutX="143.0" layoutY="26.0" style="-fx-font-weight: bold;" text="Thông tin xe " textAlignment="CENTER">
+                            <font>
+                                <Font size="32.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="95.0" layoutY="98.0" text="Biển số: ">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="94.0" layoutY="139.0" text="Loại xe: ">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="92.0" layoutY="175.0" text="Số ghế ">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="91.0" layoutY="211.0" text="Giá xe: ">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="92.0" layoutY="293.0" text="Descriptions: ">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="90.0" layoutY="248.0" text="Tiền cọc: ">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="bksLabel" layoutX="239.0" layoutY="98.0" prefHeight="24.0" prefWidth="145.0" style="-fx-font-weight: bold;" text="29T1-68101">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="categoryLabel" layoutX="239.0" layoutY="139.0" prefHeight="24.0" prefWidth="145.0" style="-fx-font-weight: bold;" text="Xe dap don" wrapText="true">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="sogheLabel" layoutX="239.0" layoutY="175.0" prefHeight="24.0" prefWidth="81.0" style="-fx-font-weight: bold;" text="1">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="priceLabel" layoutX="239.0" layoutY="211.0" prefHeight="24.0" prefWidth="81.0" style="-fx-font-weight: bold;" text="400000">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="despositeLabel" layoutX="239.0" layoutY="248.0" prefHeight="24.0" prefWidth="81.0" style="-fx-font-weight: bold;" text="135000">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="descriptionLabel" layoutX="239.0" layoutY="293.0" prefHeight="26.0" prefWidth="283.0" style="-fx-font-weight: bold;" text="xe dep mau do xanh trnag vang">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Label>
+                        <Button layoutX="177.0" layoutY="363.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="157.0" style="-fx-background-color: red; -fx-font-weight: bold;" text="Rent" textFill="#f8f8f8">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </Pane>
+                <Pane prefHeight="482.0" prefWidth="378.0">
+                    <children>
+                        <ImageView fitHeight="234.0" fitWidth="302.0" layoutX="72.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../assets/xe-dap-the-thao-catani-360-01-1.jpg" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
