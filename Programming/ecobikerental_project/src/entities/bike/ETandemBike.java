@@ -18,4 +18,10 @@ public class ETandemBike extends Bike {
 	public void setBateryStatus(int bateryStatus) {
 		this.bateryStatus = bateryStatus;
 	}
+
+	@Override
+	public String bikeTypeToString() {
+		// TODO Auto-generated method stub
+		return "Electric tandem";
+	}
 }

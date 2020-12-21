@@ -48,7 +48,7 @@ public class Main extends Application {
 		fadeOut.setOnFinished((e) -> {
 			HomeScreenHandler viewBikeHandler;
 			try {
-				viewBikeHandler = new HomeScreenHandler(primaryStage, Configs.STATION_LIST_SCREEN);
+				viewBikeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN);
 				viewBikeHandler.setSceneTitle("EcoBikeRental");
 				viewBikeHandler.show();
 			} catch (IOException e1) {

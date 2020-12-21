@@ -1,5 +1,6 @@
 package entities.bike;
 
+import db.DBConnection;
 import entities.bike.feescalculator.FeesCalculatorInterface;
 
 public abstract class Bike {
@@ -9,7 +10,16 @@ public abstract class Bike {
 	private String bikeName;
 	private int bikeType;
 	private boolean available;
+	private String description;
+	private String imgPath;
 	protected static FeesCalculatorInterface feesCal;
+	
+	public static Bike getBikeById(String bikeId) {
+		DBConnection conn = DBConnection.getDBConnection();
+		return conn.getBikeById(bikeId);
+	}
+	
+	public abstract String bikeTypeToString();
 	
 	public Bike(int bikeType) {
 		this.bikeType = bikeType;
@@ -61,6 +71,22 @@ public abstract class Bike {
 
 	public static void setFeesCal(FeesCalculatorInterface feesCal) {
 		Bike.feesCal = feesCal;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImgPath() {
+		return imgPath;
+	}
+
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
 	}
 	
 }

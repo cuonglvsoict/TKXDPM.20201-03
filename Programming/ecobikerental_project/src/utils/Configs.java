@@ -22,13 +22,16 @@ public class Configs {
 	public static final String RESET_BALANCE_PATH = "/api/card/reset-balance";
 	public static final String PAYMENT_REQUEST_PATH = "/api/card/processTransaction";
 	
-	public static final String CREDIT_CARD_PAYMENT_FORM = "src/views/fxml/payment/CreditCardPaymentForm.fxml";
-	public static final String CREDIT_CARD_PAYMENT_CONFIRM = "src/views/fxml/payment/CreditCardPaymentConfirm.fxml";
-	public static final String CREDIT_CARD_PAYMENT_RESULT = "src/views/fxml/payment/CreditCardPaymentResult.fxml";
 	public static final String SPLASH_SCREEN = "views/fxml/SplashScreen.fxml";
-	public static final String VIEW_BIKE_SCREEN = "src/views/fxml/viewbike/ViewBikeScreen.fxml";
-	public static final String STATION_LIST_SCREEN = "src/views/fxml/viewbike/StationListScreen.fxml";
-	public static final String BIKE_LIST_SCREEN = "src/views/fxml/viewbike/BikeListScreen.fxml";
+	
+	public static final String HOME_SCREEN = "src/views/fxml/viewbike/HomeScreen.fxml";
+	public static final String STATION_DETAIL_SCREEN = "src/views/fxml/viewbike/StationDetails.fxml";
+	public static final String BIKE_DETAILS_SCREEN = "src/views/fxml/viewbike/BikeDetailsScreen.fxml";
+	
 	public static final String GET_BARCODE_SCREEN = "src/views/fxml/rentbike/EnterBarcodeScreen.fxml";
 	public static final String RENT_ORDER_CONFIRM_SCREEN = "src/views/fxml/rentbike/RentalOrderConfirmScreen.fxml";
+	
+	public static final String PAYMENT_FORM_SCREEN = "src/views/fxml/payment/PaymentFormScreen.fxml";
+	public static final String PAYMENT_CONFIRM_SCREEN = "src/views/fxml/payment/PaymentConfirmScreen.fxml";
+	public static final String PAYMENT_RESULT_SCREEEN = "src/views/fxml/payment/PaymentResultScreen.fxml";
 }

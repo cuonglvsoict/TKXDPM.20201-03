@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -77,23 +78,31 @@
                <children>
                   <Pane prefHeight="38.0" prefWidth="543.0">
                      <children>
-                        <Label fx:id="contentTitle" layoutX="14.0" layoutY="5.0" text="Please enter the bike barcode" textFill="#047bf2">
+                        <Label fx:id="contentTitle" layoutX="14.0" layoutY="5.0" text="Payment result" textFill="#047bf2">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="barcode" layoutX="1.0" layoutY="37.0" prefHeight="357.0" prefWidth="538.0">
+                  <Pane layoutX="1.0" layoutY="37.0" prefHeight="357.0" prefWidth="538.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="34.0" text="Please enter the barcode of the bike you want to rent:">
+                        <Button fx:id="exitButton" cancelButton="true" layoutX="439.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="25.0" prefWidth="68.0" text="Exit">
                            <font>
-                              <Font size="13.0" />
+                              <Font name="System Bold" size="12.0" />
                            </font>
-                        </Label>
-                        <TextField fx:id="bikeBarCode" layoutX="14.0" layoutY="61.0" prefHeight="25.0" prefWidth="495.0" />
-                        <Button fx:id="confirmBarcode" defaultButton="true" layoutX="436.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleConfirmBarcodeClicked" prefHeight="25.0" prefWidth="72.0" text="Rent bike" />
+                        </Button>
                      </children></Pane>
+                  <Text fx:id="paymentResult" fill="#0344ff" layoutX="16.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="thank" fill="#0344ff" layoutX="17.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </center>

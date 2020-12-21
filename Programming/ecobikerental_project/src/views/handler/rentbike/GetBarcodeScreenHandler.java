@@ -18,20 +18,16 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.handler.BaseScreenHandler;
-import views.handler.viewbike.HomeScreenHandler;
 
 public class GetBarcodeScreenHandler extends BaseScreenHandler implements Initializable {
 
 	public static Logger logger;
 
 	@FXML
-	private Button backButton;
+	private Button confirmBarcode;
 
 	@FXML
-	private Button rentButton;
-
-	@FXML
-	private TextField barcode;
+	private TextField bikeBarCode;
 
 	public GetBarcodeScreenHandler(Stage primaryStage, String fxmlPath) throws IOException {
 		this(primaryStage, fxmlPath, new RentBikeController());
@@ -50,22 +46,17 @@ public class GetBarcodeScreenHandler extends BaseScreenHandler implements Initia
 	}
 
 	@FXML
-	void handleBackButtonAction(ActionEvent event) {
-		this.goToPreviousScreen();
-	}
-
-	@FXML
-	void handleRentButtonAction(ActionEvent event) {
+	void handleConfirmBarcodeClicked(ActionEvent event) {
 		// validate here
 
-		Bike bike = ((RentBikeController) this.getbController()).getBikeById(barcode.getText());
+		Bike bike = ((RentBikeController) this.getbController()).getBikeById(bikeBarCode.getText());
 		if (bike != null && bike.isAvailable()) {
-			AppData.setAttribute("bike", bike);
-			AppData.setAttribute("deposit", ((RentBikeController) this.getbController()).getDeposit(bike));
+			AppData.setAttribute("rented_bike", bike);
 
 			RentalOrderConfirmScreenHandler confirmRentBikeHandler;
 			try {
-				confirmRentBikeHandler = new RentalOrderConfirmScreenHandler(this.getPrimaryStage(), Configs.RENT_ORDER_CONFIRM_SCREEN);
+				confirmRentBikeHandler = new RentalOrderConfirmScreenHandler(this.getPrimaryStage(),
+						Configs.RENT_ORDER_CONFIRM_SCREEN);
 				confirmRentBikeHandler.setHomeScreenHandler(this.getHomeScreenHandler());
 				confirmRentBikeHandler.setPreviousHandler(this);
 				confirmRentBikeHandler.show();
@@ -77,7 +68,6 @@ public class GetBarcodeScreenHandler extends BaseScreenHandler implements Initia
 			BaseScreenHandler.createAlert(AlertType.ERROR, "Invalid barcode",
 					"The barcode is not valid or the corresponding bike is not available!");
 		}
-
 	}
 
 }

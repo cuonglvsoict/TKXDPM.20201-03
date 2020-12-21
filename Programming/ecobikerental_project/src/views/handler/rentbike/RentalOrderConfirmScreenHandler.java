@@ -14,15 +14,12 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.handler.BaseScreenHandler;
-import views.handler.payment.CreditCardPaymentFormHandler;
+import views.handler.payment.PaymentFormHandler;
 
 public class RentalOrderConfirmScreenHandler  extends BaseScreenHandler implements Initializable {
 
 	public static Logger logger;
 	
-	@FXML
-    private Button backButton;
-
     @FXML
     private Button payButton;
     
@@ -42,17 +39,12 @@ public class RentalOrderConfirmScreenHandler  extends BaseScreenHandler implemen
 		
 	}
 	
-	@FXML
-    void handleBackButtonAction(ActionEvent event) {
-		this.goToPreviousScreen();
-    }
-
     @FXML
-    void handlePayButtonAction(ActionEvent event) {
+    void handlePayButtonClicked(ActionEvent event) {
 		logger.info("User click payment request");
-		CreditCardPaymentFormHandler paymentHandler;
+		PaymentFormHandler paymentHandler;
 		try {
-			paymentHandler = new CreditCardPaymentFormHandler(this.getPrimaryStage(), Configs.CREDIT_CARD_PAYMENT_FORM);
+			paymentHandler = new PaymentFormHandler(this.getPrimaryStage(), Configs.PAYMENT_FORM_SCREEN);
 			paymentHandler.setHomeScreenHandler(this.getHomeScreenHandler());
 			paymentHandler.setPreviousHandler(this);
 			paymentHandler.displayPaymentForm();

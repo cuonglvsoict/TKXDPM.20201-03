@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import controller.BaseController;
 import controller.PaymentController;
 import entities.AppData;
+import entities.bike.Bike;
 import entities.payment.PaymentInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,8 +19,19 @@ import javafx.stage.Stage;
 import utils.Configs;
 import views.handler.BaseScreenHandler;
 
-public class CreditCardPaymentConfirmHandler extends BaseScreenHandler implements Initializable {
+/**
+ * The class {@code PaymentConfirmHandler} takes responsibilities to handle the
+ * payment confirmation
+ * 
+ * @author vancuonglee
+ * @since 1.0
+ *
+ */
+public class PaymentConfirmHandler extends BaseScreenHandler implements Initializable {
 
+	/**
+	 * 
+	 */
 	public static Logger logger;
 
 	@FXML
@@ -35,43 +47,38 @@ public class CreditCardPaymentConfirmHandler extends BaseScreenHandler implement
 	private Text transactionContent;
 
 	@FXML
-	private Button backButton;
-
-	@FXML
 	private Button confirmButton;
 
-	public CreditCardPaymentConfirmHandler(Stage primaryStage, String fxmlPath) throws IOException {
+	/**
+	 * Initializes a newly created {@code PaymentConfirmHandler}
+	 * 
+	 * @param primaryStage: the stage of the application
+	 * @param fxmlPath:     url to fxml resource of the screen
+	 * @throws IOException
+	 */
+	public PaymentConfirmHandler(Stage primaryStage, String fxmlPath) throws IOException {
 		this(primaryStage, fxmlPath, new PaymentController());
 	}
 
-	public CreditCardPaymentConfirmHandler(Stage primaryStage, String fxmlPath, BaseController bController)
-			throws IOException {
+	public PaymentConfirmHandler(Stage primaryStage, String fxmlPath, BaseController bController) throws IOException {
 		super(primaryStage, fxmlPath);
 		this.setbController(bController);
-		logger = utils.Utils.getLogger(CreditCardPaymentConfirmHandler.class.getName());
-	}
-
-	public void show() {
-		super.show();
-	}
-
-	@FXML
-	void handleBackButtonAction(ActionEvent event) throws IOException {
-		this.goToPreviousScreen();
+		logger = utils.Utils.getLogger(PaymentConfirmHandler.class.getName());
 	}
 
 	@FXML
 	void handleConfirmButtonAction(ActionEvent event) {
 		PaymentController controller = (PaymentController) this.getbController();
+		Bike bike = (Bike) AppData.getAttribute("rented_bike");
+
 		String paymentResultNotif = controller.processPayOrder((PaymentInfo) AppData.getAttribute("payment_info"),
-				(int) AppData.getAttribute("deposit"));
+				Bike.getFeesCal().getDeposit(bike.getBikeType()));
 
 		AppData.setAttribute("payment_result_notif", paymentResultNotif);
 
-		CreditCardPaymentResultHandler paymentResultHandler;
+		PaymentResultHandler paymentResultHandler;
 		try {
-			paymentResultHandler = new CreditCardPaymentResultHandler(this.getPrimaryStage(),
-					Configs.CREDIT_CARD_PAYMENT_RESULT);
+			paymentResultHandler = new PaymentResultHandler(this.getPrimaryStage(), Configs.PAYMENT_RESULT_SCREEEN);
 			paymentResultHandler.setHomeScreenHandler(this.getHomeScreenHandler());
 			paymentResultHandler.setPreviousHandler(this);
 			paymentResultHandler.show();
@@ -85,7 +92,9 @@ public class CreditCardPaymentConfirmHandler extends BaseScreenHandler implement
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		PaymentInfo info = (PaymentInfo) AppData.getAttribute("payment_info");
-		int amount = (int) AppData.getAttribute("deposit");
+		Bike bike = (Bike) AppData.getAttribute("rented_bike");
+
+		int amount = Bike.getFeesCal().getDeposit(bike.getBikeType());
 
 		cardCode.setText(info.getCardCode());
 		cardHolderName.setText(info.getOwner());

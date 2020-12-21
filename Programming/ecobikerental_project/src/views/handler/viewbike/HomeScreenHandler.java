@@ -2,27 +2,23 @@ package views.handler.viewbike;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import controller.BaseController;
 import controller.HomeController;
-import db.DBConnection;
 import entities.AppData;
 import entities.Station;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.handler.BaseScreenHandler;
-import views.handler.rentbike.GetBarcodeScreenHandler;
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
 
@@ -30,43 +26,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
 	@FXML
 	private ListView<?> stationList;
-
-//	@FXML
-//	private Button rentBikeButton;
-
-	@FXML
-	void onMouseClickedHandler(MouseEvent event) {
-		String selectedStation = (String) stationList.getSelectionModel().getSelectedItem();
-		if (selectedStation != null) {
-			logger.info(selectedStation + " selected.");
-			AppData.setAttribute("selectedStation", selectedStation);
-
-			ListBikeScreenHandler listBikeHandler;
-			try {
-				listBikeHandler = new ListBikeScreenHandler(this.getPrimaryStage(), Configs.BIKE_LIST_SCREEN);
-				listBikeHandler.setHomeScreenHandler(this);
-				listBikeHandler.setPreviousHandler(this);
-				listBikeHandler.show();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-
-//	@FXML
-//	void handleRentBikeButtonAction(ActionEvent event) {
-//		GetBarcodeScreenHandler barcodeHandler;
-//		try {
-//			barcodeHandler = new GetBarcodeScreenHandler(this.getPrimaryStage(), Configs.GET_BARCODE_SCREEN);
-//			barcodeHandler.setHomeScreenHandler(this);
-//			barcodeHandler.setPreviousHandler(this);
-//			barcodeHandler.show();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 
 	public HomeScreenHandler(Stage primaryStage, String fxmlPath) throws IOException {
 		this(primaryStage, fxmlPath, new HomeController());
@@ -83,16 +42,41 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 		return (HomeController) super.getbController();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		DBConnection conn = DBConnection.getDBConnection();
-		List<Station> stations = conn.getAllStation();
+		HashMap<String, Station> stations = Station.getAllStation();
+		
+		@SuppressWarnings("rawtypes")
 		ObservableList list = FXCollections.observableArrayList();
 
-		for (Station st : stations) {
+		stations.forEach((K, T) -> {
+			Station st = (Station) T;
 			list.add(st.getStationId() + " - " + st.getStationName() + " - " + st.getAddress());
-		}
+		});
+
 		stationList.getItems().addAll(list);
 	}
+
+	@FXML
+	void handleStationSelected(MouseEvent event) {
+		String selectedStation = (String) stationList.getSelectionModel().getSelectedItem();
+		if (selectedStation != null) {
+			logger.info(selectedStation + " selected.");
+			AppData.setAttribute("selectedStation", selectedStation);
+
+			StationDetailsScreen stationViewHandler;
+			try {
+				stationViewHandler = new StationDetailsScreen(this.getPrimaryStage(), Configs.STATION_DETAIL_SCREEN);
+				stationViewHandler.setHomeScreenHandler(this);
+				stationViewHandler.setPreviousHandler(this);
+				stationViewHandler.show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

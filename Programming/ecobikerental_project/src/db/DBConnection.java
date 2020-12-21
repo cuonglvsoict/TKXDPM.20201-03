@@ -33,6 +33,9 @@ public class DBConnection {
 	private final String SQL_GET_ALL_STATION = "select * from station;";
 	private final String SQL_GET_BIKES_BY_STATION = "select * from bike where station_id = ? and available = TRUE";
 	private final String SQL_GET_BIKE_BY_ID = "select * from bike where bike_id = ?";
+	private final String SQL_UPDATE_STATION_INCREASE_AVAIL = "UPDATE station SET free_dock = free_dock - 1 WHERE station_id = ?";
+	private final String SQL_UPDATE_STATION_DECREASE_AVAIL = "UPDATE station SET free_dock = free_dock + 1 WHERE station_id = ?";
+	private final String SQL_GET_ORDER = "select * from rental_orders where bike_id = ? and is_return = FALSE";
 
 	private DBConnection() {
 		try {
@@ -109,8 +112,9 @@ public class DBConnection {
 		return orderId;
 	}
 
-	public void updateOrderOnReturnBike(String bikeId, String returnTime, int rentalFees) {
+	public int updateOrderOnReturnBike(String bikeId, String returnTime, int rentalFees) {
 		try {
+			int orderId = this.getOrder(bikeId);
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_RENTAL_ORDER);
 			preparedStatement.setTimestamp(1,
 					new Timestamp(utils.Utils.parseDateTime(returnTime, Configs.DATETIME_FORMAT).getTime()));
@@ -118,10 +122,12 @@ public class DBConnection {
 			preparedStatement.setString(3, bikeId);
 
 			preparedStatement.executeUpdate();
+			return orderId;
 		} catch (SQLException | ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return -1;
 	}
 
 	public boolean checkCardIsInUsed(String cardId) {
@@ -140,6 +146,25 @@ public class DBConnection {
 			e.printStackTrace();
 		}
 		return true;
+	}
+
+	public int getOrder(String bikeId) {
+		try {
+			ResultSet result = null;
+			PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_ORDER);
+			preparedStatement.setString(1, bikeId);
+
+			result = preparedStatement.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				result.next();
+				return (int) result.getLong("order_id");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 	public List<Bike> getBikesByStation(String stationID) {
@@ -167,10 +192,12 @@ public class DBConnection {
 					break;
 				}
 				}
-				
+
 				bike.setBikeId(result.getString("bike_id"));
 				bike.setBikeName(result.getString("bike_name"));
 				bike.setStationId(result.getString("station_id"));
+				bike.setDescription(result.getString("bike_description"));
+				bike.setImgPath(result.getString("img_path"));
 				bike.setAvailable(true);
 				bikes.add(bike);
 			}
@@ -180,29 +207,31 @@ public class DBConnection {
 		}
 		return bikes;
 	}
-	
+
 	public List<Station> getAllStation() {
 		List<Station> stations = null;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_ALL_STATION);
 			ResultSet result = preparedStatement.executeQuery();
 			stations = new ArrayList<Station>();
-			
+
 			while (result.next()) {
 				Station station = new Station();
 				station.setAddress(result.getString("address"));
 				station.setStationId(result.getString("station_id"));
 				station.setStationName(result.getString("station_name"));
+				station.setDockNo(result.getInt("dock_no"));
+				station.setFreeDock(result.getInt("free_dock"));
 				stations.add(station);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return stations;
 	}
-	
+
 	public Bike getBikeById(String bikeId) {
 		Bike bike = null;
 		try {
@@ -232,13 +261,38 @@ public class DBConnection {
 				bike.setBikeId(result.getString("bike_id"));
 				bike.setBikeName(result.getString("bike_name"));
 				bike.setStationId(result.getString("station_id"));
+				bike.setDescription(result.getString("bike_description"));
+				bike.setImgPath(result.getString("img_path"));
 				bike.setAvailable(true);
-			} 
+				bike.setAvailable(true);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return bike;
+	}
+
+	public void updateStationIncreaseAvail(String stationID) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_STATION_INCREASE_AVAIL);
+			preparedStatement.setString(1, stationID);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void updateStationDecreaseAvail(String stationID) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_STATION_DECREASE_AVAIL);
+			preparedStatement.setString(1, stationID);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
@@ -255,7 +309,7 @@ public class DBConnection {
 		conn.updateBike(bikeId, "S002", false);
 		int orderId = conn.addOrder(trans.getCardCode(), bikeId, trans.getCreatedAt());
 		conn.saveTransaction(trans, orderId);
-		
+
 //		System.out.println(conn.checkCardIsInUsed(trans.getCardCode()));
 //
 //		conn.setBikeAvailability(bikeId, true);

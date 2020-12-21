@@ -20,7 +20,7 @@ import utils.Configs;
 import views.handler.BaseScreenHandler;
 import views.handler.viewbike.HomeScreenHandler;
 
-public class CreditCardPaymentFormHandler extends BaseScreenHandler implements Initializable {
+public class PaymentFormHandler extends BaseScreenHandler implements Initializable {
 
 	public static Logger logger;
 	private PaymentInfo paymentInfo;
@@ -41,17 +41,13 @@ public class CreditCardPaymentFormHandler extends BaseScreenHandler implements I
 	private TextField transactionContent;
 
 	@FXML
-	private Button backButton;
-
-	@FXML
 	private Button nextButton;
 
-	public CreditCardPaymentFormHandler(Stage primaryStage, String fxmlPath) throws IOException {
+	public PaymentFormHandler(Stage primaryStage, String fxmlPath) throws IOException {
 		this(primaryStage, fxmlPath, new PaymentController());
 	}
 
-	public CreditCardPaymentFormHandler(Stage primaryStage, String fxmlPath, BaseController bController)
-			throws IOException {
+	public PaymentFormHandler(Stage primaryStage, String fxmlPath, BaseController bController) throws IOException {
 		super(primaryStage, fxmlPath);
 		this.setbController(bController);
 		logger = utils.Utils.getLogger(HomeScreenHandler.class.getName());
@@ -70,24 +66,19 @@ public class CreditCardPaymentFormHandler extends BaseScreenHandler implements I
 			logger.info("payment info is valid");
 			AppData.setAttribute("payment_info", paymentInfo);
 
-			CreditCardPaymentConfirmHandler confirmPaymentHandler;
+			PaymentConfirmHandler confirmPaymentHandler;
 			try {
-				confirmPaymentHandler = new CreditCardPaymentConfirmHandler(this.getPrimaryStage(),
-						Configs.CREDIT_CARD_PAYMENT_CONFIRM);
+				confirmPaymentHandler = new PaymentConfirmHandler(this.getPrimaryStage(),
+						Configs.PAYMENT_CONFIRM_SCREEN);
 				confirmPaymentHandler.setHomeScreenHandler(this.getHomeScreenHandler());
 				confirmPaymentHandler.setPreviousHandler(this);
 				confirmPaymentHandler.show();
 			} catch (IOException ex) {
 				// TODO Auto-generated catch block
-				logger.info("Error ocurred! " + ex.getMessage());
-//				ex.printStackTrace();
+//				logger.info("Error ocurred! " + ex.getMessage());
+				ex.printStackTrace();
 			}
 		}
-	}
-
-	@FXML
-	void handleBackButtonAction(ActionEvent event) throws IOException {
-		this.goToPreviousScreen();
 	}
 
 	public void displayPaymentForm() {

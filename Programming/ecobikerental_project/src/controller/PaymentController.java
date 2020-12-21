@@ -31,15 +31,17 @@ public class PaymentController extends BaseController {
 
 			if (responseCode.equals("00")) {
 				this.getLOGGER().info("Successful transaction");
+				AppData.setAttribute("payment_status", true);
 
 				// save info to db
 				DBConnection conn = DBConnection.getDBConnection();
-				Bike bike = (Bike) AppData.getAttribute("bike");
+				Bike bike = (Bike) AppData.getAttribute("rented_bike");
 				Transaction trans = (Transaction) paymentResult.get("transaction");
 
 				conn.updateBike(bike.getBikeId(), bike.getStationId(), false);
 				int orderId = conn.addOrder(trans.getCardCode(), bike.getBikeId(), trans.getCreatedAt());
 				conn.saveTransaction(trans, orderId);
+				conn.updateStationDecreaseAvail(bike.getStationId());
 			} else {
 				this.getLOGGER().info("transaction Failed! Error code " + responseCode);
 			}
@@ -68,8 +70,9 @@ public class PaymentController extends BaseController {
 				Transaction trans = (Transaction) paymentResult.get("transaction");
 
 				conn.updateBike(bike.getBikeId(), bike.getStationId(), true);
-				int orderId = conn.addOrder(trans.getCardCode(), bike.getBikeId(), trans.getCreatedAt());
+				int orderId = conn.updateOrderOnReturnBike(bike.getBikeId(), trans.getCreatedAt(), trans.getAmount());
 				conn.saveTransaction(trans, orderId);
+				conn.updateStationIncreaseAvail(bike.getStationId());
 			} else {
 				this.getLOGGER().info("Successful transaction");
 			}

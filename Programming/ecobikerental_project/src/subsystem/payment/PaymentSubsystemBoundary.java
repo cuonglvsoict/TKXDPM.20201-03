@@ -5,6 +5,15 @@ import java.util.HashMap;
 
 import entities.payment.PaymentInfo;
 
+/**
+ * The class {@code PaymentSubsystemBoundary} implements the
+ * {@code PaymentSystemInterface} that provides method that allow to call to
+ * payment system, including payorder, refund and check balance
+ * 
+ * @author vancuonglee
+ * @since 1.0
+ *
+ */
 public class PaymentSubsystemBoundary implements PaymentSystemInterface {
 
 	@Override

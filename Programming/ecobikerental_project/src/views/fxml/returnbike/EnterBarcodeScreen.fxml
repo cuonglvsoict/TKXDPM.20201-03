@@ -40,7 +40,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="rentButton" defaultButton="true" layoutX="114.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleRentButtonAction" prefHeight="25.0" prefWidth="76.0" text="Rent">
+            <Button fx:id="returnButton" defaultButton="true" layoutX="114.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleReturnButtonAction" prefHeight="25.0" prefWidth="76.0" text="Return">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

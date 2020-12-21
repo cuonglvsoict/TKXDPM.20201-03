@@ -16,44 +16,44 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import views.handler.BaseScreenHandler;
 
-public class CreditCardPaymentResultHandler extends BaseScreenHandler implements Initializable {
+public class PaymentResultHandler extends BaseScreenHandler implements Initializable {
 
 	public static Logger logger;
-	
+
 	@FXML
-    private Text paymentResult;
+	private Text paymentResult;
 
-    @FXML
-    private Button homeButton;
+	@FXML
+	private Text thank;
 
-    @FXML
-    private Button exitButton;
+	@FXML
+	private Button exitButton;
 
-    public CreditCardPaymentResultHandler(Stage primaryStage, String fxmlPath) throws IOException {
+	public PaymentResultHandler(Stage primaryStage, String fxmlPath) throws IOException {
 		this(primaryStage, fxmlPath, new PaymentController());
 	}
 
-	public CreditCardPaymentResultHandler(Stage primaryStage, String fxmlPath, BaseController bController)
-			throws IOException {
+	public PaymentResultHandler(Stage primaryStage, String fxmlPath, BaseController bController) throws IOException {
 		super(primaryStage, fxmlPath);
 		this.setbController(bController);
-		logger = utils.Utils.getLogger(CreditCardPaymentResultHandler.class.getName());
+		logger = utils.Utils.getLogger(PaymentResultHandler.class.getName());
 	}
-    
-    @FXML
-    void handleExitButtonAction(ActionEvent event) {
-    	this.getPrimaryStage().close();
-    }
 
-    @FXML
-    void handleHomeButtonAction(ActionEvent event) {
-    	this.goToHomeScreen();
-    }
+	@FXML
+	void handleExitButtonAction(ActionEvent event) {
+		this.getPrimaryStage().close();
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		this.paymentResult.setText((String) AppData.getAttribute("payment_result_notif"));
+		boolean status = (boolean) AppData.getAttribute("payment_status");
+		if (status) {
+			this.thank.setText("Thanks for choosing us!!!");
+		} else {
+			this.thank.setText(" ");
+		}
 	}
 
 }
