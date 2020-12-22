@@ -90,6 +90,7 @@ public class PaymentConfirmHandler extends BaseScreenHandler implements Initiali
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		disableSearch();
 		// TODO Auto-generated method stub
 		PaymentInfo info = (PaymentInfo) AppData.getAttribute("payment_info");
 		Bike bike = (Bike) AppData.getAttribute("rented_bike");
