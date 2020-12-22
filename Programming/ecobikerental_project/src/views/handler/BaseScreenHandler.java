@@ -244,7 +244,6 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 			String input = searchInput.getText();
 			if (input.length() > 0) {
 				BaseScreenHandler.createAlert(AlertType.INFORMATION, "Searching activated", input);
-
 				// handle search here
 			}
 		}
