@@ -35,7 +35,8 @@ public class DBConnection {
 	private final String SQL_GET_BIKE_BY_ID = "select * from bike where bike_id = ?";
 	private final String SQL_UPDATE_STATION_INCREASE_AVAIL = "UPDATE station SET free_dock = free_dock - 1 WHERE station_id = ?";
 	private final String SQL_UPDATE_STATION_DECREASE_AVAIL = "UPDATE station SET free_dock = free_dock + 1 WHERE station_id = ?";
-	private final String SQL_GET_ORDER = "select * from rental_orders where bike_id = ? and is_return = FALSE";
+	private final String SQL_GET_ORDER = "select * from rental_orders where bike_id = ? and is_return = FALSE;";
+	private final String SQL_CHECK_RENTAL_ORDER = "select * from rental_orders where cardCode = ? and bike_id = ?;";
 
 	private DBConnection() {
 		try {
@@ -135,6 +136,25 @@ public class DBConnection {
 			ResultSet result = null;
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL_CHECK_CARD_IN_USED);
 			preparedStatement.setString(1, cardId);
+
+			result = preparedStatement.executeQuery();
+
+			if (!result.isBeforeFirst()) {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public boolean checkRentalOrder(String cardId, String bikeId) {
+		try {
+			ResultSet result = null;
+			PreparedStatement preparedStatement = connection.prepareStatement(SQL_CHECK_RENTAL_ORDER);
+			preparedStatement.setString(1, cardId);
+			preparedStatement.setString(2, bikeId);
 
 			result = preparedStatement.executeQuery();
 

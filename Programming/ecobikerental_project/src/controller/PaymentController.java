@@ -24,6 +24,7 @@ public class PaymentController extends BaseController {
 	public String processPayOrder(PaymentInfo paymentInfo, int amount) {
 		PaymentSubsystemBoundary paymentSystem = new PaymentSubsystemBoundary();
 		String responseCode = null;
+		Transaction trans = null;
 
 		try {
 			HashMap<String, Object> paymentResult = paymentSystem.processPayOrderRequest(paymentInfo, amount);
@@ -36,7 +37,7 @@ public class PaymentController extends BaseController {
 				// save info to db
 				DBConnection conn = DBConnection.getDBConnection();
 				Bike bike = (Bike) AppData.getAttribute("rented_bike");
-				Transaction trans = (Transaction) paymentResult.get("transaction");
+				trans = (Transaction) paymentResult.get("transaction");
 
 				conn.updateBike(bike.getBikeId(), bike.getStationId(), false);
 				int orderId = conn.addOrder(trans.getCardCode(), bike.getBikeId(), trans.getCreatedAt());
@@ -50,12 +51,13 @@ public class PaymentController extends BaseController {
 			this.getLOGGER().info("Error occurred!" + e.getMessage());
 		}
 
-		return this.getPaymentResultMessage(responseCode);
+		return this.getPaymentResultMessage(responseCode, trans.getCommand());
 	}
 
 	public String processRefund(PaymentInfo paymentInfo, int amount) {
 		PaymentSubsystemBoundary paymentSystem = new PaymentSubsystemBoundary();
 		String responseCode = null;
+		Transaction trans = null;
 
 		try {
 			HashMap<String, Object> paymentResult = paymentSystem.processRefundRequest(paymentInfo, amount);
@@ -67,7 +69,7 @@ public class PaymentController extends BaseController {
 				// save info to db
 				DBConnection conn = DBConnection.getDBConnection();
 				Bike bike = (Bike) AppData.getAttribute("bike");
-				Transaction trans = (Transaction) paymentResult.get("transaction");
+				trans = (Transaction) paymentResult.get("transaction");
 
 				conn.updateBike(bike.getBikeId(), bike.getStationId(), true);
 				int orderId = conn.updateOrderOnReturnBike(bike.getBikeId(), trans.getCreatedAt(), trans.getAmount());
@@ -81,17 +83,21 @@ public class PaymentController extends BaseController {
 			this.getLOGGER().info("transaction Failed! Error code " + responseCode);
 		}
 
-		return this.getPaymentResultMessage(responseCode);
+		return this.getPaymentResultMessage(responseCode, trans.getCommand());
 	}
 
 	public int getBalance() {
 		return 0;
 	}
 
-	private String getPaymentResultMessage(String responseCode) {
+	private String getPaymentResultMessage(String responseCode, String command) {
 		switch (responseCode) {
 		case "00": {
-			return "Payment accepted! Your bike has been unlocked!!!";
+			if (command.equals("pay")) {
+				return "Payment accepted! Your bike has been unlocked!!!";
+			} else {
+				return "Successful transaction, your deposit has been refunded!!!";
+			}
 		}
 		case "01": {
 			return responseCode + " Invalid card!!! Please verify your infomation and try again";

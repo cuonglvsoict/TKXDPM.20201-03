@@ -77,7 +77,7 @@
                <children>
                   <Pane prefHeight="38.0" prefWidth="543.0">
                      <children>
-                        <Label fx:id="contentTitle" layoutX="14.0" layoutY="5.0" text="Please enter the bike barcode" textFill="#047bf2">
+                        <Label fx:id="contentTitle" layoutX="14.0" layoutY="5.0" text="Provide infomation to return bike" textFill="#047bf2">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -92,8 +92,14 @@
                            </font>
                         </Label>
                         <TextField fx:id="bikeBarCode" layoutX="14.0" layoutY="61.0" prefHeight="25.0" prefWidth="495.0" />
-                        <Button fx:id="confirmBarcode" defaultButton="true" layoutX="436.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleConfirmBarcodeClicked" prefHeight="25.0" prefWidth="72.0" text="Rent bike" />
+                        <Button fx:id="returnButton" defaultButton="true" layoutX="430.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleReturnButtonClicked" prefHeight="25.0" prefWidth="78.0" text="Return bike" />
                      </children></Pane>
+                  <Label layoutX="16.0" layoutY="140.0" text="Enter the credit card code that was used to rent the bike:">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cardCode" layoutX="16.0" layoutY="167.0" prefHeight="25.0" prefWidth="495.0" />
                </children>
             </Pane>
          </center>

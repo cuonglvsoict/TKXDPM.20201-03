@@ -11,9 +11,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.handler.rentbike.GetBarcodeScreenHandler;
+import views.handler.returnbike.ReturnBikeScreenHandler;
 import views.handler.viewbike.HomeScreenHandler;
 
 /**
@@ -77,6 +80,7 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 			this.disableBackButton();
 		}
 
+		searchInput.clear();
 		this.primaryStage.show();
 	}
 
@@ -218,16 +222,31 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 
 	@FXML
 	void handleReturnBikeClick(ActionEvent event) {
-
-	}
-
-	@FXML
-	void handleSearch(ActionEvent event) {
-
+		ReturnBikeScreenHandler returnBikeHandler;
+		try {
+			returnBikeHandler = new ReturnBikeScreenHandler(primaryStage, Configs.RETURN_BIKE_SCREEN);
+			returnBikeHandler.setHomeScreenHandler(this.getHomeScreenHandler());
+			returnBikeHandler.setPreviousHandler(this);
+			returnBikeHandler.show();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	public void disableBackButton() {
 		this.backButton.setDisable(true);
 	}
 
+	@FXML
+	void handleSearchEnter(KeyEvent event) {
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			String input = searchInput.getText();
+			if (input.length() > 0) {
+				BaseScreenHandler.createAlert(AlertType.INFORMATION, "Searching activated", input);
+
+				// handle search here
+			}
+		}
+	}
 }
