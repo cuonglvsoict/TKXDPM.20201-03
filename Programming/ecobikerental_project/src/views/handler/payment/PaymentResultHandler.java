@@ -16,8 +16,19 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import views.handler.BaseScreenHandler;
 
+/**
+ * The class {@code PaymentResultHandler} takes responsibilities for handle
+ * payment result screen
+ * 
+ * @author vancuonglee
+ * @since 1.0
+ *
+ */
 public class PaymentResultHandler extends BaseScreenHandler implements Initializable {
 
+	/**
+	 * object to log infomation to console
+	 */
 	public static Logger logger;
 
 	@FXML
@@ -29,10 +40,25 @@ public class PaymentResultHandler extends BaseScreenHandler implements Initializ
 	@FXML
 	private Button exitButton;
 
+	/**
+	 * Initializes a newly created payment result handler
+	 * 
+	 * @param primaryStage: the primary stage of the application
+	 * @param fxmlPath:     the path to fxml resource of the result screen
+	 * @throws IOException
+	 */
 	public PaymentResultHandler(Stage primaryStage, String fxmlPath) throws IOException {
 		this(primaryStage, fxmlPath, new PaymentController());
 	}
 
+	/**
+	 * Initializes a newly created payment result handler
+	 * 
+	 * @param primaryStage: the primary stage of the application
+	 * @param fxmlPath:     the path to fxml resource of the result screen
+	 * @param bController:  payment controller
+	 * @throws IOException
+	 */
 	public PaymentResultHandler(Stage primaryStage, String fxmlPath, BaseController bController) throws IOException {
 		super(primaryStage, fxmlPath);
 		this.setbController(bController);
@@ -41,6 +67,7 @@ public class PaymentResultHandler extends BaseScreenHandler implements Initializ
 
 	@FXML
 	void handleExitButtonAction(ActionEvent event) {
+		// close the primary stage and close the application
 		this.getPrimaryStage().close();
 	}
 

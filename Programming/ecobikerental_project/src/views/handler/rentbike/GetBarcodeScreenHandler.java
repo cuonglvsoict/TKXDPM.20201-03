@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.handler.BaseScreenHandler;
+import views.handler.viewbike.BikeDetailsScreenHandler;
 
 public class GetBarcodeScreenHandler extends BaseScreenHandler implements Initializable {
 
@@ -49,17 +50,17 @@ public class GetBarcodeScreenHandler extends BaseScreenHandler implements Initia
 	void handleConfirmBarcodeClicked(ActionEvent event) {
 		// validate here
 
-		Bike bike = ((RentBikeController) this.getbController()).getBikeById(bikeBarCode.getText());
+		Bike bike = RentBikeController.getBikeById(bikeBarCode.getText());
 		if (bike != null && bike.isAvailable()) {
-			AppData.setAttribute("rented_bike", bike);
+			AppData.setAttribute("selectedBike", bike.getBikeId());
 
-			RentalOrderConfirmScreenHandler confirmRentBikeHandler;
+			BikeDetailsScreenHandler viewBikeScreenHandler;
 			try {
-				confirmRentBikeHandler = new RentalOrderConfirmScreenHandler(this.getPrimaryStage(),
-						Configs.RENT_ORDER_CONFIRM_SCREEN);
-				confirmRentBikeHandler.setHomeScreenHandler(this.getHomeScreenHandler());
-				confirmRentBikeHandler.setPreviousHandler(this);
-				confirmRentBikeHandler.show();
+				viewBikeScreenHandler = new BikeDetailsScreenHandler(this.getPrimaryStage(),
+						Configs.BIKE_DETAILS_SCREEN);
+				viewBikeScreenHandler.setHomeScreenHandler(this.getHomeScreenHandler());
+				viewBikeScreenHandler.setPreviousHandler(this);
+				viewBikeScreenHandler.show();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

@@ -10,8 +10,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import utils.Configs;
 
+/**
+ * Class to initialize the splash screen
+ * @author vancuonglee
+ * @since 1.0
+ *
+ */
+
 public class SplashScreenHandler implements Initializable {
 
+	/**
+	 * logo image view
+	 */
     @FXML
     ImageView logo;
 

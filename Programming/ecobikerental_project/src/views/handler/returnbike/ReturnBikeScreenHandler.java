@@ -46,7 +46,7 @@ public class ReturnBikeScreenHandler extends BaseScreenHandler implements Initia
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		HashMap<String, Station> stations = Station.getAllStation();
+		HashMap<String, Station> stations = HomeController.getAllStation();
 
 		@SuppressWarnings("rawtypes")
 		ObservableList list = FXCollections.observableArrayList();
@@ -66,8 +66,9 @@ public class ReturnBikeScreenHandler extends BaseScreenHandler implements Initia
 	void handleStationSelected(MouseEvent event) {
 		String selectedStation = (String) stationList.getSelectionModel().getSelectedItem();
 		if (selectedStation != null) {
-			logger.info(selectedStation + " selected.");
-			AppData.setAttribute("returnStation", selectedStation);
+			String stationID = selectedStation.split("-")[0].strip();
+			logger.info(stationID + " selected.");
+			AppData.setAttribute("returnStation", stationID);
 
 			GetBarcodeReturnBikeScreenHandler getBarcodeHandler;
 			try {

@@ -13,6 +13,13 @@ import utils.Configs;
 import views.handler.SplashScreenHandler;
 import views.handler.viewbike.HomeScreenHandler;
 
+/**
+ * The {@code Main} class is the application entry
+ * 
+ * @author vancuonglee
+ * @since 1.0
+ *
+ */
 public class Main extends Application {
 
 	@Override
@@ -43,7 +50,7 @@ public class Main extends Application {
 		fadeIn.setOnFinished((e) -> {
 			fadeOut.play();
 		});
-		
+
 		// After fade out, load actual content
 		fadeOut.setOnFinished((e) -> {
 			HomeScreenHandler viewBikeHandler;
@@ -60,7 +67,11 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		String params[] = { "ecobikerental", "root", "" };
 		Bike.setFeesCal(new FeesCalculator01());
+		Configs.databaseName = params[0];
+		Configs.databaseUserName = params[1];
+		Configs.databasePassword = params[2];
 		launch(args);
 	}
 

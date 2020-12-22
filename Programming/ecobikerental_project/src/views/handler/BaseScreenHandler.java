@@ -30,12 +30,12 @@ import views.handler.viewbike.HomeScreenHandler;
 public abstract class BaseScreenHandler extends FXMLScreenHandler {
 
 	/**
-	 * 
+	 * The scene contains the display content
 	 */
 	private Scene scene;
 
 	/**
-	 * 
+	 * The primary stage of the application
 	 */
 	private Stage primaryStage;
 

@@ -30,7 +30,7 @@ import views.handler.BaseScreenHandler;
 public class PaymentConfirmHandler extends BaseScreenHandler implements Initializable {
 
 	/**
-	 * 
+	 * logger for logging to the console
 	 */
 	public static Logger logger;
 
@@ -60,6 +60,14 @@ public class PaymentConfirmHandler extends BaseScreenHandler implements Initiali
 		this(primaryStage, fxmlPath, new PaymentController());
 	}
 
+	/**
+	 * Initializes a newly created {@code PaymentConfirmHandler}
+	 * 
+	 * @param primaryStage: the stage of the application
+	 * @param fxmlPath:     url to fxml resource of the screen
+	 * @param bController: the payment controller
+	 * @throws IOException
+	 */
 	public PaymentConfirmHandler(Stage primaryStage, String fxmlPath, BaseController bController) throws IOException {
 		super(primaryStage, fxmlPath);
 		this.setbController(bController);
@@ -71,11 +79,12 @@ public class PaymentConfirmHandler extends BaseScreenHandler implements Initiali
 		PaymentController controller = (PaymentController) this.getbController();
 		Bike bike = (Bike) AppData.getAttribute("rented_bike");
 
+		// call to payment system
 		String paymentResultNotif = controller.processPayOrder((PaymentInfo) AppData.getAttribute("payment_info"),
 				Bike.getFeesCal().getDeposit(bike.getBikeType()));
-
 		AppData.setAttribute("payment_result_notif", paymentResultNotif);
 
+		// switch to payment result screen
 		PaymentResultHandler paymentResultHandler;
 		try {
 			paymentResultHandler = new PaymentResultHandler(this.getPrimaryStage(), Configs.PAYMENT_RESULT_SCREEEN);
@@ -91,13 +100,15 @@ public class PaymentConfirmHandler extends BaseScreenHandler implements Initiali
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		
+		// extract infomation to display on confirm 
 		PaymentInfo info = (PaymentInfo) AppData.getAttribute("payment_info");
 		Bike bike = (Bike) AppData.getAttribute("rented_bike");
-
 		int amount = Bike.getFeesCal().getDeposit(bike.getBikeType());
 
-		cardCode.setText(info.getCardCode());
-		cardHolderName.setText(info.getOwner());
+		// setup confirm screen
+		cardCode.setText(info.getCard().getCardCode());
+		cardHolderName.setText(info.getCard().getCardHolderName());
 		this.amount.setText(utils.Utils.formatCurrency(amount) + " " + Configs.CURRENCY);
 		transactionContent.setText(info.getTransactionContent());
 	}

@@ -78,8 +78,8 @@ public class StationDetailsScreen extends BaseScreenHandler implements Initializ
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		String[] stationInfo = ((String) AppData.getAttribute("selectedStation")).split(" - ");
-		Station station = Station.getAllStation().get(stationInfo[0].strip());
-		HashMap<String, Bike> bikes = Station.getAllBikeByStationId(stationInfo[0]);
+		Station station = HomeController.getAllStation().get(stationInfo[0].strip());
+		HashMap<String, Bike> bikes = HomeController.getAllBikeByStationId(stationInfo[0]);
 
 		@SuppressWarnings("rawtypes")
 		ObservableList list = FXCollections.observableArrayList();

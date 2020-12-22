@@ -1,11 +1,5 @@
 package entities;
 
-import java.util.HashMap;
-import java.util.List;
-
-import db.DBConnection;
-import entities.bike.Bike;
-
 public class Station {
 
 	private String stationId;
@@ -17,31 +11,7 @@ public class Station {
 	public Station() {
 
 	}
-
-	public static HashMap<String, Bike> getAllBikeByStationId(String stationId) {
-		DBConnection conn = DBConnection.getDBConnection();
-		List<Bike> bikes = conn.getBikesByStation(stationId);
-
-		HashMap<String, Bike> bikeList = new HashMap<String, Bike>();
-		for (Bike b : bikes) {
-			bikeList.put(b.getBikeId(), b);
-		}
-
-		return bikeList;
-	}
 	
-	public static HashMap<String, Station> getAllStation() {
-		DBConnection conn = DBConnection.getDBConnection();
-		List<Station> stations = conn.getAllStation();
-
-		HashMap<String, Station> stationList = new HashMap<String, Station>();
-		for (Station st : stations) {
-			stationList.put(st.getStationId(), st);
-		}
-
-		return stationList;
-	}
-
 	public String getStationId() {
 		return stationId;
 	}

@@ -1,12 +1,20 @@
 package utils;
 
+/**
+ * The class {@code Configs} contains a all parameters for the application. User
+ * needs to set up database infomation
+ * 
+ * @author vancuonglee
+ * @since 1.0
+ *
+ */
 public class Configs {
 
-	public static final String LOGO_PATH = "img/logo.png";
+	public static String databaseName;;
+	public static String databaseUserName;
+	public static String databasePassword;
 
-	public static final String DB_NAME = "ecobikerental";
-	public static final String DB_USERNAME = "root";
-	public static final String DB_PASSWORD = "";
+	public static final String LOGO_PATH = "img/logo.png";
 
 	public static final String APP_CODE = "CO3UOyJZ2Xo=";
 	public static final String SECRET_KEY = "BriZN2k8024=";
@@ -32,7 +40,7 @@ public class Configs {
 	public static final String RENT_ORDER_CONFIRM_SCREEN = "src/views/fxml/rentbike/RentalOrderConfirmScreen.fxml";
 
 	public static final String RETURN_BIKE_SCREEN = "src/views/fxml/returnbike/ReturnBikeScreen.fxml";
-	public static final String GET_BARCODE_TO_RETURN_BIKE = "src/views/fxml/rentbike/EnterBarcodeReturnBikeScreen.fxml";
+	public static final String GET_BARCODE_TO_RETURN_BIKE = "src/views/fxml/returnbike/EnterBarcodeReturnBikeScreen.fxml";
 
 	public static final String PAYMENT_FORM_SCREEN = "src/views/fxml/payment/PaymentFormScreen.fxml";
 	public static final String PAYMENT_CONFIRM_SCREEN = "src/views/fxml/payment/PaymentConfirmScreen.fxml";

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.json.JSONObject;
 
+import entities.payment.Card;
 import entities.payment.PaymentInfo;
 import entities.payment.Transaction;
 import utils.Configs;
@@ -86,10 +87,11 @@ public class PaymentSubsystemController {
 	 */
 	protected static String processResetCardRequest(PaymentInfo info) throws IOException {
 		JSONObject requestBody = new JSONObject();
-		requestBody.put("cardCode", info.getCardCode());
-		requestBody.put("owner", info.getOwner());
-		requestBody.put("cvvCode", info.getCvvCode());
-		requestBody.put("dateExpired", info.getDateExpired());
+		Card card = info.getCard();
+		requestBody.put("cardCode", card.getCardCode());
+		requestBody.put("owner", card.getCardHolderName());
+		requestBody.put("cvvCode", card.getCvvCode());
+		requestBody.put("dateExpired", card.getDateExpired());
 
 		String url = Configs.PAYMENT_BASE_URL + Configs.RESET_BALANCE_PATH;
 		String response = InterbankBoundary.query(url, requestBody.toString());
@@ -117,10 +119,10 @@ public class PaymentSubsystemController {
 
 	public static void main(String[] args) throws IOException {
 		PaymentInfo info = new PaymentInfo();
-		info.setCardCode("118609_group3_2020");
-		info.setOwner("Group 3");
-		info.setCvvCode("501");
-		info.setDateExpired("1125");
+		info.getCard().setCardCode("118609_group3_2020");
+		info.getCard().setCardHolderName("Group 3");
+		info.getCard().setCvvCode("501");
+		info.getCard().setDateExpired("1125");
 		PaymentSubsystemController.processResetCardRequest(info);
 //		CreditCardPaymentController.processPayOrderRequest(info, 200000, "test");
 	}

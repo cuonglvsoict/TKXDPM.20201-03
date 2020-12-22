@@ -2,8 +2,6 @@ package entities.payment;
 
 import java.util.Date;
 
-import utils.Configs;
-
 public class Transaction {
 	private String cardCode;
 	private String owner;
@@ -12,21 +10,22 @@ public class Transaction {
 	private String command;
 	private String transactionContent;
 	private int amount;
-	private String createdAt;
-	
+	private long createdAt;
+
 	public Transaction() {
-		
+
 	}
-	
+
 	public Transaction(PaymentInfo info, int amount, String command) {
-		this.setCardCode(info.getCardCode());
-		this.setOwner(info.getOwner());
-		this.setCvvCode(info.getCvvCode());
-		this.setDateExpired(info.getDateExpired());
+		Card card = info.getCard();
+		this.setCardCode(card.getCardCode());
+		this.setOwner(card.getCardHolderName());
+		this.setCvvCode(card.getCvvCode());
+		this.setDateExpired(card.getDateExpired());
 		this.setTransactionContent(info.getTransactionContent());
 		this.setCommand(command);
 		this.setAmount(amount);
-		this.setCreatedAt(utils.Utils.formatDateTime(new Date(), Configs.DATETIME_FORMAT));
+		this.setCreatedAt(new Date().getTime());
 	}
 
 	public String getCardCode() {
@@ -85,12 +84,12 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	public String getCreatedAt() {
+	public long getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(String createdAt) {
+	public void setCreatedAt(long createdAt) {
 		this.createdAt = createdAt;
 	}
-	
+
 }

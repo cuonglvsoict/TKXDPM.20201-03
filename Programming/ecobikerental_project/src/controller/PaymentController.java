@@ -2,31 +2,44 @@ package controller;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.logging.Logger;
 
-import db.DBConnection;
+import db.DBInteraction;
 import entities.AppData;
+import entities.RentalOrder;
 import entities.bike.Bike;
 import entities.payment.PaymentInfo;
 import entities.payment.Transaction;
 import subsystem.payment.PaymentSubsystemBoundary;
 
+/**
+ * The class {@code PaymentController} provide method to process payment request
+ * such as pay order, refund.
+ * 
+ * @author vancuonglee
+ * @since 1.0
+ *
+ */
 public class PaymentController extends BaseController {
 
 	public PaymentController() {
 		super(utils.Utils.getLogger(PaymentController.class.getName()));
 	}
 
-	public PaymentController(Logger logger) {
-		super(logger);
-	}
-
+	/**
+	 * The method to process pay order request
+	 * 
+	 * @param paymentInfo: payment information, including card infomation and
+	 *                     transaction content
+	 * @param amount:      the value of the transaction
+	 * @return a string response message to display to use
+	 */
 	public String processPayOrder(PaymentInfo paymentInfo, int amount) {
 		PaymentSubsystemBoundary paymentSystem = new PaymentSubsystemBoundary();
 		String responseCode = null;
 		Transaction trans = null;
 
 		try {
+			// process pay order
 			HashMap<String, Object> paymentResult = paymentSystem.processPayOrderRequest(paymentInfo, amount);
 			responseCode = (String) paymentResult.get("error_code");
 
@@ -35,14 +48,15 @@ public class PaymentController extends BaseController {
 				AppData.setAttribute("payment_status", true);
 
 				// save info to db
-				DBConnection conn = DBConnection.getDBConnection();
 				Bike bike = (Bike) AppData.getAttribute("rented_bike");
 				trans = (Transaction) paymentResult.get("transaction");
 
-				conn.updateBike(bike.getBikeId(), bike.getStationId(), false);
-				int orderId = conn.addOrder(trans.getCardCode(), bike.getBikeId(), trans.getCreatedAt());
-				conn.saveTransaction(trans, orderId);
-				conn.updateStationDecreaseAvail(bike.getStationId());
+				DBInteraction.insertCard(paymentInfo.getCard().getCardCode(), paymentInfo.getCard().getCardHolderName(),
+						Long.valueOf(paymentInfo.getCard().getDateExpired()), paymentInfo.getCard().getCvvCode());
+				DBInteraction.updateBike(bike.getBikeId(), bike.getStationId(), false);
+				RentalOrder order = DBInteraction.addOrder(trans.getCardCode(), bike.getBikeId(), trans.getCreatedAt());
+				DBInteraction.saveTransaction(trans, order.getRentalId());
+				DBInteraction.updateStationDecreaseAvail(bike.getStationId());
 			} else {
 				this.getLOGGER().info("transaction Failed! Error code " + responseCode);
 			}
@@ -54,42 +68,60 @@ public class PaymentController extends BaseController {
 		return this.getPaymentResultMessage(responseCode, trans.getCommand());
 	}
 
-	public String processRefund(PaymentInfo paymentInfo, int amount) {
+	/**
+	 * The method to process refund request
+	 * 
+	 * @param paymentInfo: payment information, including card infomation and
+	 *                     transaction content
+	 * @param amount:      the value of the transaction
+	 * @return a string response message to display to use
+	 */
+	public String processRefund(String cardCode, String bikeCode) {
 		PaymentSubsystemBoundary paymentSystem = new PaymentSubsystemBoundary();
-		String responseCode = null;
-		Transaction trans = null;
+		Bike bike = DBInteraction.getBikeById(bikeCode);
+		bike.setStationId((String) AppData.getAttribute("returnStation"));
 
+		PaymentInfo paymentInfo = new PaymentInfo(DBInteraction.getCardById(cardCode), "ECOBIKERENTAL REFUND");
+		RentalOrder order = ReturnBikeController.updateRentalOrderOnReturnBike(bike);
+		String responseCode = null;
 		try {
-			HashMap<String, Object> paymentResult = paymentSystem.processRefundRequest(paymentInfo, amount);
+			// process refund request
+			HashMap<String, Object> paymentResult = paymentSystem.processRefundRequest(paymentInfo,
+					RentBikeController.getRefundAmount(order, bike));
 			responseCode = (String) paymentResult.get("error_code");
 
 			if (responseCode.equals("00")) {
 				this.getLOGGER().info("Successful transaction");
 
-				// save info to db
-				DBConnection conn = DBConnection.getDBConnection();
-				Bike bike = (Bike) AppData.getAttribute("bike");
-				trans = (Transaction) paymentResult.get("transaction");
-
-				conn.updateBike(bike.getBikeId(), bike.getStationId(), true);
-				int orderId = conn.updateOrderOnReturnBike(bike.getBikeId(), trans.getCreatedAt(), trans.getAmount());
-				conn.saveTransaction(trans, orderId);
-				conn.updateStationIncreaseAvail(bike.getStationId());
+				// save infomation to db
+				Transaction trans = (Transaction) paymentResult.get("transaction");
+				DBInteraction.updateBike(bike.getBikeId(), bike.getStationId(), true);
+				DBInteraction.updateOrderOnReturnBike(bike.getBikeId(), order.getReturnTime(), order.getRentalFees());
+				DBInteraction.saveTransaction(trans, order.getRentalId());
+				DBInteraction.updateStationIncreaseAvail(bike.getStationId());
+				return this.getPaymentResultMessage(responseCode, trans.getCommand());
 			} else {
-				this.getLOGGER().info("Successful transaction");
+				this.getLOGGER().info("transaction Failed! Error code " + responseCode);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			this.getLOGGER().info("transaction Failed! Error code " + responseCode);
+			this.getLOGGER().info("transaction Failed!");
 		}
-
-		return this.getPaymentResultMessage(responseCode, trans.getCommand());
+		return responseCode;
 	}
 
 	public int getBalance() {
 		return 0;
 	}
 
+	/**
+	 * method translates response code from inter bank to notify message to display
+	 * for use
+	 * 
+	 * @param responseCode: response code from inter bank
+	 * @param command:      payment command
+	 * @return message to display
+	 */
 	private String getPaymentResultMessage(String responseCode, String command) {
 		switch (responseCode) {
 		case "00": {
@@ -124,33 +156,5 @@ public class PaymentController extends BaseController {
 			return responseCode + " Payment failded";
 		}
 		}
-	}
-
-	public boolean validatePaymentInfor(PaymentInfo info) {
-		return true;
-	}
-
-	public boolean validateCardCode(String cardCode) {
-		return true;
-	}
-
-	public boolean validateCardHolderName(String name) {
-		return true;
-	}
-
-	public boolean validateCvv(String cvv) {
-		return true;
-	}
-
-	public boolean validateDateExpired(String dateExp) {
-		return true;
-	}
-
-	public boolean validateTransactionContent(String content) {
-		return true;
-	}
-
-	public boolean validateAmount(int amount) {
-		return true;
 	}
 }

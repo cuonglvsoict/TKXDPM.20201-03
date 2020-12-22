@@ -1,6 +1,6 @@
 package entities.bike;
 
-import db.DBConnection;
+import db.DBInteraction;
 import entities.bike.feescalculator.FeesCalculatorInterface;
 
 public abstract class Bike {
@@ -15,8 +15,7 @@ public abstract class Bike {
 	protected static FeesCalculatorInterface feesCal;
 	
 	public static Bike getBikeById(String bikeId) {
-		DBConnection conn = DBConnection.getDBConnection();
-		return conn.getBikeById(bikeId);
+		return DBInteraction.getBikeById(bikeId);
 	}
 	
 	public abstract String bikeTypeToString();
