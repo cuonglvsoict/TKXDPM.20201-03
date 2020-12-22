@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09642616-3c23-4a67-a796-1dbb09d2b03f" name="Default Changelist" comment="" />
+    <list default="true" id="09642616-3c23-4a67-a796-1dbb09d2b03f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/BaseScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/BaseScreenHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/viewbike/HomeScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/viewbike/HomeScreenHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/viewbike/StationDetailsScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/viewbike/StationDetailsScreen.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,11 +73,22 @@
       <option name="presentableId" value="Default" />
       <updated>1608403563130</updated>
       <workItem from="1608601440124" duration="13010000" />
-      <workItem from="1608617970438" duration="348000" />
+      <workItem from="1608617970438" duration="4057000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

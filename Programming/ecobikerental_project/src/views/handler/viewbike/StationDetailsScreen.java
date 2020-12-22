@@ -26,6 +26,7 @@ import views.handler.BaseScreenHandler;
 public class StationDetailsScreen extends BaseScreenHandler implements Initializable {
 
 	public static Logger logger;
+	ObservableList MainList;
 
 	@FXML
 	private ListView<?> bikeList;
@@ -51,6 +52,22 @@ public class StationDetailsScreen extends BaseScreenHandler implements Initializ
 		this.setbController(bController);
 		logger = utils.Utils.getLogger(StationDetailsScreen.class.getName());
 	}
+
+	public void searchByKey(){
+		String key = super.getSearchKey();
+		ObservableList list = FXCollections.observableArrayList();
+
+		for(int i=0;i<MainList.size();i++){
+			if(MainList.get(i).toString().contains(key)) {
+				list.add(MainList.get(i));
+			}
+		}
+
+		bikeList.getItems().remove(0,bikeList.getItems().size());
+		bikeList.getItems().addAll(list);
+	}
+
+
 
 	@FXML
 	void handleBikeSelected(MouseEvent event) {
@@ -93,7 +110,8 @@ public class StationDetailsScreen extends BaseScreenHandler implements Initializ
 				list.add(b.getBikeId() + " - " + b.getBikeName());
 			}
 		});
-		bikeList.getItems().addAll(list);
+		this.MainList=list;
+		bikeList.getItems().addAll(MainList);
 
 		stationName.setText(stationInfo[1].strip());
 		stationAddress.setText(stationInfo[2].strip());
