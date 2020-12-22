@@ -46,6 +46,7 @@ public class PaymentResultHandler extends BaseScreenHandler implements Initializ
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		disableSearch();
 		// TODO Auto-generated method stub
 		this.paymentResult.setText((String) AppData.getAttribute("payment_result_notif"));
 		boolean status = (boolean) AppData.getAttribute("payment_status");

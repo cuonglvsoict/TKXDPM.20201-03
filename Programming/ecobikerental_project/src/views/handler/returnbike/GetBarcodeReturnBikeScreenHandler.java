@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import controller.BaseController;
+import controller.HomeController;
 import controller.PaymentController;
 import controller.ReturnBikeController;
 import db.DBConnection;
@@ -62,7 +63,7 @@ public class GetBarcodeReturnBikeScreenHandler extends BaseScreenHandler impleme
 			AppData.setAttribute("returned_bike", bikeBarCode.getText());
 			
 			PaymentController controller = (PaymentController) this.getbController();
-			Bike bike = Bike.getBikeById(bikeBarCode.getText());
+			Bike bike = HomeController.getBikeById(bikeBarCode.getText());
 			
 			// process refund here;
 			String paymentResultNotif = null;

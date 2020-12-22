@@ -14,10 +14,10 @@ public abstract class Bike {
 	private String imgPath;
 	protected static FeesCalculatorInterface feesCal;
 	
-	public static Bike getBikeById(String bikeId) {
-		DBConnection conn = DBConnection.getDBConnection();
-		return conn.getBikeById(bikeId);
-	}
+//	public static Bike getBikeById(String bikeId) {
+//		DBConnection conn = DBConnection.getDBConnection();
+//		return conn.getBikeById(bikeId);
+//	}
 	
 	public abstract String bikeTypeToString();
 	

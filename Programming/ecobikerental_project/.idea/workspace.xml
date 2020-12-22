@@ -5,10 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09642616-3c23-4a67-a796-1dbb09d2b03f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/bike/Bike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/bike/Bike.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/bike/feescalculator/FeesCalculator01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/bike/feescalculator/FeesCalculator01.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/handler/BaseScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/BaseScreenHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/payment/PaymentConfirmHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/payment/PaymentConfirmHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/payment/PaymentFormHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/payment/PaymentFormHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/payment/PaymentResultHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/payment/PaymentResultHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/rentbike/GetBarcodeScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/rentbike/GetBarcodeScreenHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/rentbike/RentalOrderConfirmScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/rentbike/RentalOrderConfirmScreenHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/returnbike/GetBarcodeReturnBikeScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/returnbike/GetBarcodeReturnBikeScreenHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/returnbike/ReturnBikeScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/returnbike/ReturnBikeScreenHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/viewbike/BikeDetailsScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/viewbike/BikeDetailsScreenHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/handler/viewbike/HomeScreenHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/viewbike/HomeScreenHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/handler/viewbike/StationDetailsScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/viewbike/StationDetailsScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/handler/viewbike/StationDetailsScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/handler/viewbike/StationDetailsScreenHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +47,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/mysql-connector-java-8.0.22/mysql-connector-java-8.0.22.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views/fxml/viewbike" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -46,6 +60,9 @@
       <recent name="views.handler.viewbike" />
       <recent name="entities.bike" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspace\GitHub\TKXDPM.20201-03\Programming\ecobikerental_project\src\views\fxml\viewbike" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -54,6 +71,19 @@
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="ecobikerental" />
       <option name="VM_PARAMETERS" value="--module-path lib/javafx-sdk-15.0.1/lib/ --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -73,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1608403563130</updated>
       <workItem from="1608601440124" duration="13010000" />
-      <workItem from="1608617970438" duration="4057000" />
+      <workItem from="1608617970438" duration="12565000" />
     </task>
     <servers />
   </component>

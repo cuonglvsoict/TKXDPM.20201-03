@@ -87,6 +87,7 @@ public class PaymentFormHandler extends BaseScreenHandler implements Initializab
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		super.disableSearch();
 		// TODO Auto-generated method stub
 		paymentInfo = new PaymentInfo();
 

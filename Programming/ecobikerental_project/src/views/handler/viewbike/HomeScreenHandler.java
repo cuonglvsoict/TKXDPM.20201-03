@@ -60,7 +60,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		HashMap<String, Station> stations = Station.getAllStation();
+		HashMap<String, Station> stations = HomeController.getAllStation();
 		
 		@SuppressWarnings("rawtypes")
 		ObservableList list = FXCollections.observableArrayList();
@@ -81,9 +81,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 			logger.info(selectedStation + " selected.");
 			AppData.setAttribute("selectedStation", selectedStation);
 
-			StationDetailsScreen stationViewHandler;
+			StationDetailsScreenHandler stationViewHandler;
 			try {
-				stationViewHandler = new StationDetailsScreen(this.getPrimaryStage(), Configs.STATION_DETAIL_SCREEN);
+				stationViewHandler = new StationDetailsScreenHandler(this.getPrimaryStage(), Configs.STATION_DETAIL_SCREEN);
 				stationViewHandler.setHomeScreenHandler(this);
 				stationViewHandler.setPreviousHandler(this);
 				stationViewHandler.show();

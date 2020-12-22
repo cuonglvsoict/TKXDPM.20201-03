@@ -238,6 +238,10 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 		this.backButton.setDisable(true);
 	}
 
+	public void disableSearch(){
+		this.searchInput.setDisable(true);
+	}
+
 	@FXML
 	void handleSearchEnter(KeyEvent event) {
 		if (event.getCode().equals(KeyCode.ENTER)) {

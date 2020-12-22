@@ -46,7 +46,7 @@ public class ReturnBikeScreenHandler extends BaseScreenHandler implements Initia
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		HashMap<String, Station> stations = Station.getAllStation();
+		HashMap<String, Station> stations = HomeController.getAllStation();
 
 		@SuppressWarnings("rawtypes")
 		ObservableList list = FXCollections.observableArrayList();

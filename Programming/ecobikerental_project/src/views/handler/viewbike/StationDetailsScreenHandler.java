@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import utils.Configs;
 import views.handler.BaseScreenHandler;
 
-public class StationDetailsScreen extends BaseScreenHandler implements Initializable {
+public class StationDetailsScreenHandler extends BaseScreenHandler implements Initializable {
 
 	public static Logger logger;
 	ObservableList MainList;
@@ -43,14 +43,14 @@ public class StationDetailsScreen extends BaseScreenHandler implements Initializ
 	@FXML
 	private Label stationName;
 
-	public StationDetailsScreen(Stage primaryStage, String fxmlPath) throws IOException {
+	public StationDetailsScreenHandler(Stage primaryStage, String fxmlPath) throws IOException {
 		this(primaryStage, fxmlPath, new HomeController());
 	}
 
-	public StationDetailsScreen(Stage primaryStage, String fxmlPath, BaseController bController) throws IOException {
+	public StationDetailsScreenHandler(Stage primaryStage, String fxmlPath, BaseController bController) throws IOException {
 		super(primaryStage, fxmlPath);
 		this.setbController(bController);
-		logger = utils.Utils.getLogger(StationDetailsScreen.class.getName());
+		logger = utils.Utils.getLogger(StationDetailsScreenHandler.class.getName());
 	}
 
 	public void searchByKey(){
@@ -95,8 +95,8 @@ public class StationDetailsScreen extends BaseScreenHandler implements Initializ
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		String[] stationInfo = ((String) AppData.getAttribute("selectedStation")).split(" - ");
-		Station station = Station.getAllStation().get(stationInfo[0].strip());
-		HashMap<String, Bike> bikes = Station.getAllBikeByStationId(stationInfo[0]);
+		Station station = HomeController.getAllStation().get(stationInfo[0].strip());
+		HashMap<String, Bike> bikes = HomeController.getAllBikeByStationId(stationInfo[0]);
 
 		@SuppressWarnings("rawtypes")
 		ObservableList list = FXCollections.observableArrayList();
