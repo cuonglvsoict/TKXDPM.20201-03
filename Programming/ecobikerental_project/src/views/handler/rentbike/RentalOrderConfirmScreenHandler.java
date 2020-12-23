@@ -35,6 +35,7 @@ public class RentalOrderConfirmScreenHandler  extends BaseScreenHandler implemen
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		super.disableSearch();
 		// TODO Auto-generated method stub
 		
 	}

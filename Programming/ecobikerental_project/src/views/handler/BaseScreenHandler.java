@@ -3,7 +3,6 @@ package views.handler;
 import java.io.IOException;
 
 import controller.BaseController;
-import controller.HomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -19,7 +18,6 @@ import utils.Configs;
 import views.handler.rentbike.GetBarcodeScreenHandler;
 import views.handler.returnbike.ReturnBikeScreenHandler;
 import views.handler.viewbike.HomeScreenHandler;
-import views.handler.viewbike.SearchResultScreenHandler;
 
 /**
  * The abstract class {@code BaseScreenHandler} provides basic methods to work
@@ -240,25 +238,23 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 		this.backButton.setDisable(true);
 	}
 
+	public void disableSearch(){
+		this.searchInput.setDisable(true);
+	}
+
 	@FXML
 	void handleSearchEnter(KeyEvent event) {
 		if (event.getCode().equals(KeyCode.ENTER)) {
 			String input = searchInput.getText();
-
-			if (input.length() > 0) {
-
-				try {
-					HomeController.processSearchInput(input);
-					SearchResultScreenHandler searchScreenHandler = new SearchResultScreenHandler(primaryStage,
-							Configs.SEARCH_RESULT_SCREEN);
-					searchScreenHandler.setPreviousHandler(this);
-					searchScreenHandler.show();
-					searchScreenHandler.setHomeScreenHandler(this.getHomeScreenHandler());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
+				searchByKey();
+//				BaseScreenHandler.createAlert(AlertType.INFORMATION, "Searching activated", input);
+				// handle search here
 		}
 	}
+	public String getSearchKey(){
+		return searchInput.getText();
+	}
+	public void searchByKey(){
+	};
+
 }

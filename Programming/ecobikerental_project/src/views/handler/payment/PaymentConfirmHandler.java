@@ -99,6 +99,7 @@ public class PaymentConfirmHandler extends BaseScreenHandler implements Initiali
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		disableSearch();
 		// TODO Auto-generated method stub
 		
 		// extract infomation to display on confirm 
