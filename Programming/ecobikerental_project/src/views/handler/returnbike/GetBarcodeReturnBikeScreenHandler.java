@@ -6,9 +6,11 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import controller.BaseController;
+import controller.HomeController;
 import controller.PaymentController;
 import db.DBInteraction;
 import entities.AppData;
+import entities.bike.Bike;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,6 +61,7 @@ public class GetBarcodeReturnBikeScreenHandler extends BaseScreenHandler impleme
 			AppData.setAttribute("returned_bike", bikeBarCode.getText());
 
 			PaymentController controller = (PaymentController) this.getbController();
+			Bike bike = HomeController.getBikeById(bikeBarCode.getText());
 
 			// process refund here;
 			String paymentResultNotif = controller.processRefund(cardCode.getText(), bikeBarCode.getText());

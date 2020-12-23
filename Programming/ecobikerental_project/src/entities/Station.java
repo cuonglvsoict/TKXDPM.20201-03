@@ -11,7 +11,7 @@ public class Station {
 	public Station() {
 
 	}
-	
+
 	public String getStationId() {
 		return stationId;
 	}

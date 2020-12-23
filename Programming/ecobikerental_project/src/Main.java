@@ -72,6 +72,7 @@ public class Main extends Application {
 		Configs.databaseName = params[0];
 		Configs.databaseUserName = params[1];
 		Configs.databasePassword = params[2];
+		
 		launch(args);
 	}
 
