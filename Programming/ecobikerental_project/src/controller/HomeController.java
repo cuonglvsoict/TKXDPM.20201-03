@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import db.DBInteraction;
+import entities.AppData;
 import entities.Station;
 import entities.bike.Bike;
 
@@ -34,5 +35,12 @@ public class HomeController extends BaseController {
 
     public static Bike getBikeById(String bikeId) {
         return DBInteraction.getBikeById(bikeId);
+    }
+    
+    public static void handleSearch(String input) {
+    	List<Bike> bikes = DBInteraction.searchBike(input);
+    	List<Station> stations = DBInteraction.searchStation(input);
+    	AppData.setAttribute("search_station_result", stations);
+    	AppData.setAttribute("search_bike_result", bikes);
     }
 }

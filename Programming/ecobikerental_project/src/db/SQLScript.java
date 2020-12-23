@@ -71,5 +71,10 @@ public class SQLScript {
 	 * get a card by a given card id
 	 */
 	public static final String SQL_GET_CARD = "select * from card where card_id = ?";
+	
+	public static final String SQL_SEARCH_STATION = "select * from station where station_id like ? or station_name like ? or address like ?;";
+	
+	public static final String SQL_SEARCH_BIKE = "select * from bike where bike_id like ? or bike_name like ?";
+			
 
 }

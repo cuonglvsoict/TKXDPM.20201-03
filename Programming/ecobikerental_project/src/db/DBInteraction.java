@@ -421,5 +421,79 @@ public class DBInteraction {
 		}
 		return card;
 	}
+	
+	public static List<Bike> searchBike(String input) {
+		List<Bike> bikes = new ArrayList<Bike>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(SQLScript.SQL_SEARCH_BIKE);
+			String tmp = "%" + input + "%";
+			preparedStatement.setString(1, tmp);
+			preparedStatement.setString(2, tmp);
+
+			ResultSet result = preparedStatement.executeQuery();
+			while (result.next()) {
+				int bikeType = result.getInt("bike_type");
+				Bike bike = null;
+				switch (bikeType) {
+				case 1: {
+					bike = new RoadBike();
+					break;
+				}
+				case 2: {
+					bike = new TandemBike();
+					break;
+				}
+				case 3: {
+					bike = new ETandemBike();
+					break;
+				}
+				}
+
+				bike.setBikeId(result.getString("bike_id"));
+				bike.setBikeName(result.getString("bike_name"));
+				bike.setStationId(result.getString("station_id"));
+				bike.setDescription(result.getString("bike_description"));
+				bike.setImgPath(result.getString("img_path"));
+				bike.setAvailable(true);
+				bikes.add(bike);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bikes;
+	}
+
+	/**
+	 * method to get all the bike stations
+	 * 
+	 * @return list of bike stations
+	 */
+	public static List<Station> searchStation(String input) {
+		List<Station> stations = new ArrayList<Station>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(SQLScript.SQL_SEARCH_STATION);
+			String tmp = "%" + input + "%";
+			preparedStatement.setString(1, tmp);
+			preparedStatement.setString(2, tmp);
+			preparedStatement.setString(3, tmp);
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				Station station = new Station();
+				station.setAddress(result.getString("address"));
+				station.setStationId(result.getString("station_id"));
+				station.setStationName(result.getString("station_name"));
+				station.setDockNo(result.getInt("dock_no"));
+				station.setFreeDock(result.getInt("free_dock"));
+				stations.add(station);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return stations;
+	}
 
 }

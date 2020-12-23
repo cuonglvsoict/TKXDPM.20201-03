@@ -35,6 +35,7 @@ public class Configs {
 	public static final String HOME_SCREEN = "src/views/fxml/viewbike/HomeScreen.fxml";
 	public static final String STATION_DETAIL_SCREEN = "src/views/fxml/viewbike/StationDetails.fxml";
 	public static final String BIKE_DETAILS_SCREEN = "src/views/fxml/viewbike/BikeDetailsScreen.fxml";
+	public static final String SEARCH_RESULT_SCREEN = "src/views/fxml/viewbike/SearchResultScreen.fxml";
 
 	public static final String GET_BARCODE_SCREEN = "src/views/fxml/rentbike/EnterBarcodeScreen.fxml";
 	public static final String RENT_ORDER_CONFIRM_SCREEN = "src/views/fxml/rentbike/RentalOrderConfirmScreen.fxml";

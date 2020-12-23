@@ -67,7 +67,6 @@ public class BikeDetailsScreenHandler extends BaseScreenHandler implements Initi
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		super.disableSearch();
 		// TODO Auto-generated method stub
 		String[] bikeInfo = ((String) AppData.getAttribute("selectedBike")).split("-");
 		Bike bike = HomeController.getBikeById(bikeInfo[0].strip());
