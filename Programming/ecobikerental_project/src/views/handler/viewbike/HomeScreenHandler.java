@@ -23,7 +23,6 @@ import views.handler.BaseScreenHandler;
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
 
 	public static Logger logger;
-	ObservableList MainList;
 
 	@FXML
 	private ListView<?> stationList;
@@ -43,25 +42,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 		return (HomeController) super.getbController();
 	}
 
-
-	public void searchByKey(){
-		String key = super.getSearchKey();
-		ObservableList list = FXCollections.observableArrayList();
-		for(int i=0;i<MainList.size();i++){
-			if(MainList.get(i).toString().contains(key)) {
-				list.add(MainList.get(i));
-			}
-		}
-		stationList.getItems().remove(0,stationList.getItems().size());
-		stationList.getItems().addAll(list);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		HashMap<String, Station> stations = HomeController.getAllStation();
-		
+
 		@SuppressWarnings("rawtypes")
 		ObservableList list = FXCollections.observableArrayList();
 
@@ -69,11 +55,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 			Station st = (Station) T;
 			list.add(st.getStationId() + " - " + st.getStationName() + " - " + st.getAddress());
 		});
-		this.MainList=list;
-		stationList.getItems().addAll(MainList);
-
+		stationList.getItems().addAll(list);
 
 	}
+
 	@FXML
 	void handleStationSelected(MouseEvent event) {
 		String selectedStation = (String) stationList.getSelectionModel().getSelectedItem();
@@ -83,7 +68,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
 			StationDetailsScreenHandler stationViewHandler;
 			try {
-				stationViewHandler = new StationDetailsScreenHandler(this.getPrimaryStage(), Configs.STATION_DETAIL_SCREEN);
+				stationViewHandler = new StationDetailsScreenHandler(this.getPrimaryStage(),
+						Configs.STATION_DETAIL_SCREEN);
 				stationViewHandler.setHomeScreenHandler(this);
 				stationViewHandler.setPreviousHandler(this);
 				stationViewHandler.show();
