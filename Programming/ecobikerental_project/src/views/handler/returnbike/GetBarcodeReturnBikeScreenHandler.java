@@ -62,7 +62,11 @@ public class GetBarcodeReturnBikeScreenHandler extends BaseScreenHandler impleme
 
 			PaymentController controller = (PaymentController) this.getbController();
 			Bike bike = HomeController.getBikeById(bikeBarCode.getText());
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> f74712872f23523ca509a80ce5ad845c88952a88
 			// process refund here;
 			String paymentResultNotif = controller.processRefund(cardCode.getText(), bikeBarCode.getText());
 

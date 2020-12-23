@@ -12,6 +12,33 @@ public class Station {
 
 	}
 
+<<<<<<< HEAD
+=======
+//	public static HashMap<String, Bike> getAllBikeByStationId(String stationId) {
+//		DBConnection conn = DBConnection.getDBConnection();
+//		List<Bike> bikes = conn.getBikesByStation(stationId);
+//
+//		HashMap<String, Bike> bikeList = new HashMap<String, Bike>();
+//		for (Bike b : bikes) {
+//			bikeList.put(b.getBikeId(), b);
+//		}
+//
+//		return bikeList;
+//	}
+//
+//	public static HashMap<String, Station> getAllStation() {
+//		DBConnection conn = DBConnection.getDBConnection();
+//		List<Station> stations = conn.getAllStation();
+//
+//		HashMap<String, Station> stationList = new HashMap<String, Station>();
+//		for (Station st : stations) {
+//			stationList.put(st.getStationId(), st);
+//		}
+//
+//		return stationList;
+//	}
+
+>>>>>>> f74712872f23523ca509a80ce5ad845c88952a88
 	public String getStationId() {
 		return stationId;
 	}
