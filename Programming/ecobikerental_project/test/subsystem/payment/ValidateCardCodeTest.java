@@ -9,7 +9,7 @@ class ValidateCardCodeTest {
 
 	@ParameterizedTest
 	@CsvSource({
-		"abc, true",
+		"118609_group3_2020, true",
 		"abc cde, false",
 		"abc123, true",
 		"123 45, false",

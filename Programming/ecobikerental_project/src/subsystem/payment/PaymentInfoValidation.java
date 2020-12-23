@@ -13,6 +13,11 @@ import entities.payment.PaymentInfo;
  */
 public class PaymentInfoValidation {
 
+	/**
+	 * Method to validate payment infomation
+	 * @param info: payment infomation, including card info and transaction content
+	 * @return
+	 */
 	public static boolean validatePaymentInfor(PaymentInfo info) {
 		Card card = info.getCard();
 		return validateCardCode(card.getCardCode()) && validateCardHolderName(card.getCardHolderName())
@@ -24,7 +29,7 @@ public class PaymentInfoValidation {
 		if (cardCode == null || cardCode.equals(""))
 			return false;
 		for (char c : cardCode.toCharArray()) {
-			if ((c < 48 || c > 122 || (57 < c && c < 65) || (90 < c && c < 97))) {
+			if (c != '_' && (c < 48 || c > 122 || (57 < c && c < 65) || (90 < c && c < 97))) {
 				return false;
 			}
 		}
@@ -62,22 +67,15 @@ public class PaymentInfoValidation {
 			}
 		}
 		
-		long time = Long.valueOf(dateExp);
-		if (time < utils.Utils.getCurrentTime()) {
-			return false;
-		}
+//		long time = Long.valueOf(dateExp);
+//		if (time < utils.Utils.getCurrentTime()) {
+//			return false;
+//		}
 		
 		return true;
 	}
 
 	public static boolean validateTransactionContent(String content) {
-		if (content == null || content.equals(""))
-			return false;
-		for (char c : content.toCharArray()) {
-			if (c != ' ' && (c < 48 || c > 122 || (57 < c && c < 65) || (90 < c && c < 97))) {
-				return false;
-			}
-		}
 		return true;
 	}
 

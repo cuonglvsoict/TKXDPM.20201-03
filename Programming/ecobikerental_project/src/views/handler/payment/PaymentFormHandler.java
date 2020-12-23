@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-import common.exceptions.InvalidCardException;
 import controller.BaseController;
 import controller.PaymentController;
 import entities.AppData;
@@ -96,6 +95,7 @@ public class PaymentFormHandler extends BaseScreenHandler implements Initializab
 		card.setDateExpired(this.dateExpired.getText());
 		card.setCvvCode(this.cvvCode.getText());
 		paymentInfo.setCard(card);
+		paymentInfo.setTransactionContent(this.transactionContent.getText());
 
 		// validate user input information
 		// if information is not valid, create an alert to notify to the user
@@ -132,28 +132,6 @@ public class PaymentFormHandler extends BaseScreenHandler implements Initializab
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		paymentInfo = new PaymentInfo();
-		paymentInfo.setCard(new Card());
-
-		this.cardCode.setOnKeyReleased(e -> {
-			paymentInfo.getCard().setCardCode(cardCode.getText());
-		});
-
-		this.cardHolderName.setOnKeyReleased(e -> {
-			paymentInfo.getCard().setCardHolderName(cardHolderName.getText());
-		});
-
-		this.cvvCode.setOnKeyReleased(e -> {
-			paymentInfo.getCard().setCvvCode(cvvCode.getText());
-		});
-
-		this.dateExpired.setOnKeyReleased(e -> {
-			paymentInfo.getCard().setDateExpired(dateExpired.getText());
-		});
-
-		this.transactionContent.setOnKeyReleased(e -> {
-			paymentInfo.setTransactionContent(transactionContent.getText());
-		});
 	}
 
 }
