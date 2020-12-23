@@ -56,12 +56,12 @@
                   <TextField fx:id="searchInput" layoutX="232.0" layoutY="12.0" onKeyPressed="#handleSearchEnter" prefHeight="25.0" prefWidth="353.0" promptText="Search by station, bike, address..." style="-fx-background-radius: 10 10 10 10;" />
                   <ImageView fitHeight="19.0" fitWidth="22.0" focusTraversable="true" layoutX="625.0" layoutY="14.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../img/setting_logo.png" />
+                        <Image url="@../../../img/setting_logo.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="19.0" fitWidth="22.0" layoutX="601.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../img/notification.png" />
+                        <Image url="@../../../img/notification.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="backButton" layoutX="150.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="18.0" prefWidth="25.0" style="-fx-background-radius: 90 90 90 90;" text="&lt;">
