@@ -79,7 +79,7 @@ public class StationDetailsScreenHandler extends BaseScreenHandler implements In
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		String[] stationInfo = ((String) AppData.getAttribute("selectedStation")).split(" - ");
-		Station station = HomeController.getAllStation().get(stationInfo[0].strip());
+		Station station = HomeController.getAllStation().get(utils.Utils.strip(stationInfo[0]));
 		HashMap<String, Bike> bikes = HomeController.getAllBikeByStationId(stationInfo[0]);
 
 		@SuppressWarnings("rawtypes")
@@ -96,8 +96,8 @@ public class StationDetailsScreenHandler extends BaseScreenHandler implements In
 		});
 		bikeList.getItems().addAll(list);
 
-		stationName.setText(stationInfo[1].strip());
-		stationAddress.setText(stationInfo[2].strip());
+		stationName.setText(stationInfo[1]);
+		stationAddress.setText(stationInfo[2]);
 		this.availNumber.
 		setText(Integer.valueOf(station.getDockNo() - station.getFreeDock())
 				.toString());

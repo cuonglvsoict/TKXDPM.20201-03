@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import utils.Configs;
 
 /**
  * The abstract class {@code FXMLScreenHandler} takes responsibility for loading
@@ -35,8 +36,8 @@ public abstract class FXMLScreenHandler {
 	 * @throws IOException
 	 */
 	public FXMLScreenHandler(String fxmlPath) throws IOException {
-		URL url = Paths.get(fxmlPath).toUri().toURL();
-		this.loader = new FXMLLoader(url);
+//		URL url = Paths.get(fxmlPath).toUri().toURL();
+		this.loader = new FXMLLoader(getClass().getResource(fxmlPath));
 		this.loader.setController(this);
 		this.rootContent = loader.load();
 	}

@@ -24,7 +24,7 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-        </plugins>
+		</plugins>
 	</build>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
@@ -44,6 +44,11 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.3.6</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.39</version>
 		</dependency>
 	</dependencies>
 </project>

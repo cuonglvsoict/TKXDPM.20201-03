@@ -7,16 +7,6 @@
 
 ---
 
-# LAB 05 - Design principles & concepts
-
-
----
-
-# LAB 04 - Unit test
-
-
----
-
 # LAB 03 - Programming
 ## Tasks
 * Lập trình theo bản thiết kế đã có
@@ -25,13 +15,13 @@
 * Nguyễn Trọng Chinh: phụ trách usecase "Rent bike".
 * Lã Văn Dân: phụ trách usecase "Return bike".
 * Bùi Tiến Đạt: phụ trách usecase "View bike/bike station".
-* Lê Văn Cường: setup project, phụ trách usecase "Pay order".
+* Lê Văn Cường: setup project, phụ trách usecase "Pay order", thiết kế lại giao diện.
 
 ## Revisions
-* Nguyễn Trọng Chinh (review by Cường):
-* Lã Văn Dân (review by Chinh):
-* Bùi Tiến Đạt (review by Dân):
-* Lê Văn Cường (review by Chinh):
+* Nguyễn Trọng Chinh (review by Cường): hoàn thành công việc
+* Lã Văn Dân (review by Chinh): hoàn thành.
+* Bùi Tiến Đạt (review by Dân): hoàn thiện tương đối tốt công việc được giao.
+* Lê Văn Cường (review by Chinh): đã hoàn thiện các nội dung yêu cầu.
 
 ---
 

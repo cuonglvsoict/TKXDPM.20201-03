@@ -53,16 +53,16 @@ public class Main extends Application {
 
 		// After fade out, load actual content
 		fadeOut.setOnFinished((e) -> {
-			HomeScreenHandler viewBikeHandler;
-			try {
-				viewBikeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN);
-				viewBikeHandler.setSceneTitle("EcoBikeRental");
-				viewBikeHandler.show();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 		});
+		HomeScreenHandler viewBikeHandler;
+		try {
+			viewBikeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN);
+			viewBikeHandler.setSceneTitle("EcoBikeRental");
+			viewBikeHandler.show();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 	}
 

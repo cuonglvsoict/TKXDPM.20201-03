@@ -30,19 +30,19 @@ public class Configs {
 	public static final String RESET_BALANCE_PATH = "/api/card/reset-balance";
 	public static final String PAYMENT_REQUEST_PATH = "/api/card/processTransaction";
 
-	public static final String SPLASH_SCREEN = "/views/fxml/SplashScreen.fxml";
-	public static final String HOME_SCREEN = "src/views/fxml/viewbike/HomeScreen.fxml";
-	public static final String STATION_DETAIL_SCREEN = "src/views/fxml/viewbike/StationDetails.fxml";
-	public static final String BIKE_DETAILS_SCREEN = "src/views/fxml/viewbike/BikeDetailsScreen.fxml";
-	public static final String SEARCH_RESULT_SCREEN = "src/views/fxml/viewbike/SearchResultScreen.fxml";
+	public static final String SPLASH_SCREEN = "/src/views/fxml/SplashScreen.fxml";
+	public static final String HOME_SCREEN = "/src/views/fxml/viewbike/HomeScreen.fxml";
+	public static final String STATION_DETAIL_SCREEN = "/src/views/fxml/viewbike/StationDetails.fxml";
+	public static final String BIKE_DETAILS_SCREEN = "/src/views/fxml/viewbike/BikeDetailsScreen.fxml";
+	public static final String SEARCH_RESULT_SCREEN = "/src/views/fxml/viewbike/SearchResultScreen.fxml";
 
-	public static final String GET_BARCODE_SCREEN = "src/views/fxml/rentbike/EnterBarcodeScreen.fxml";
-	public static final String RENT_ORDER_CONFIRM_SCREEN = "src/views/fxml/rentbike/RentalOrderConfirmScreen.fxml";
+	public static final String GET_BARCODE_SCREEN = "/src/views/fxml/rentbike/EnterBarcodeScreen.fxml";
+	public static final String RENT_ORDER_CONFIRM_SCREEN = "/src/views/fxml/rentbike/RentalOrderConfirmScreen.fxml";
 
-	public static final String RETURN_BIKE_SCREEN = "src/views/fxml/returnbike/ReturnBikeScreen.fxml";
-	public static final String GET_BARCODE_TO_RETURN_BIKE = "src/views/fxml/returnbike/EnterBarcodeReturnBikeScreen.fxml";
+	public static final String RETURN_BIKE_SCREEN = "/src/views/fxml/returnbike/ReturnBikeScreen.fxml";
+	public static final String GET_BARCODE_TO_RETURN_BIKE = "/src/views/fxml/returnbike/EnterBarcodeReturnBikeScreen.fxml";
 
-	public static final String PAYMENT_FORM_SCREEN = "src/views/fxml/payment/PaymentFormScreen.fxml";
-	public static final String PAYMENT_CONFIRM_SCREEN = "src/views/fxml/payment/PaymentConfirmScreen.fxml";
-	public static final String PAYMENT_RESULT_SCREEEN = "src/views/fxml/payment/PaymentResultScreen.fxml";
+	public static final String PAYMENT_FORM_SCREEN = "/src/views/fxml/payment/PaymentFormScreen.fxml";
+	public static final String PAYMENT_CONFIRM_SCREEN = "/src/views/fxml/payment/PaymentConfirmScreen.fxml";
+	public static final String PAYMENT_RESULT_SCREEEN = "/src/views/fxml/payment/PaymentResultScreen.fxml";
 }

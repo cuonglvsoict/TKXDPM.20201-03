@@ -65,5 +65,9 @@ public class Utils {
 		long minutes = (distanceTime - day * (24 * 60 * 60 * 1000l) / (1000 * 60));
 		return minutes;
 	}
+	
+	public static String strip(String input) {
+		return input.replaceAll(" ", "");
+	}
 
 }
