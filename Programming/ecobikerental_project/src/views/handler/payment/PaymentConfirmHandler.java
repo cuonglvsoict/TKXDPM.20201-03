@@ -93,7 +93,8 @@ public class PaymentConfirmHandler extends BaseScreenHandler implements Initiali
 			paymentResultHandler.show();
 		} catch (IOException ex) {
 			// TODO Auto-generated catch block
-			logger.info("Error ocurred! " + ex.getMessage());
+//			logger.info("Error ocurred! " + ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
 

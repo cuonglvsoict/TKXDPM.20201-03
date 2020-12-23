@@ -42,6 +42,7 @@ public class PaymentController extends BaseController {
 			// process pay order
 			HashMap<String, Object> paymentResult = paymentSystem.processPayOrderRequest(paymentInfo, amount);
 			responseCode = (String) paymentResult.get("error_code");
+			trans = (Transaction) paymentResult.get("transaction");
 
 			if (responseCode.equals("00")) {
 				this.getLOGGER().info("Successful transaction");
@@ -49,7 +50,6 @@ public class PaymentController extends BaseController {
 
 				// save info to db
 				Bike bike = (Bike) AppData.getAttribute("rented_bike");
-				trans = (Transaction) paymentResult.get("transaction");
 
 				DBInteraction.insertCard(paymentInfo.getCard().getCardCode(), paymentInfo.getCard().getCardHolderName(),
 						Long.valueOf(paymentInfo.getCard().getDateExpired()), paymentInfo.getCard().getCvvCode());
@@ -58,6 +58,7 @@ public class PaymentController extends BaseController {
 				DBInteraction.saveTransaction(trans, order.getRentalId());
 				DBInteraction.updateStationDecreaseAvail(bike.getStationId());
 			} else {
+				AppData.setAttribute("payment_status", false);
 				this.getLOGGER().info("transaction Failed! Error code " + responseCode);
 			}
 		} catch (IOException e) {
@@ -92,6 +93,7 @@ public class PaymentController extends BaseController {
 
 			if (responseCode.equals("00")) {
 				this.getLOGGER().info("Successful transaction");
+				AppData.setAttribute("payment_status", true);
 
 				// save infomation to db
 				Transaction trans = (Transaction) paymentResult.get("transaction");
@@ -102,6 +104,7 @@ public class PaymentController extends BaseController {
 				return this.getPaymentResultMessage(responseCode, trans.getCommand());
 			} else {
 				this.getLOGGER().info("transaction Failed! Error code " + responseCode);
+				AppData.setAttribute("payment_status", false);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

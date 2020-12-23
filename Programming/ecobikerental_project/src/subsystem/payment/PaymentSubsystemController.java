@@ -119,6 +119,7 @@ public class PaymentSubsystemController {
 
 	public static void main(String[] args) throws IOException {
 		PaymentInfo info = new PaymentInfo();
+		info.setCard(new Card());
 		info.getCard().setCardCode("118609_group3_2020");
 		info.getCard().setCardHolderName("Group 3");
 		info.getCard().setCvvCode("501");

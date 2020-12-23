@@ -28,6 +28,7 @@ public class Utils {
 
 	/**
 	 * Method to generate MD5 hash code from a payment transaction
+	 * 
 	 * @param transaction: a transaction needs to hash
 	 * @return hash code
 	 */
@@ -40,6 +41,7 @@ public class Utils {
 
 	/**
 	 * The method to format currency
+	 * 
 	 * @param amount: number needs to format
 	 * @return amount formated as a string
 	 */
@@ -55,6 +57,13 @@ public class Utils {
 
 	public static long getCurrentTime() {
 		return new Date().getTime();
+	}
+
+	public static long getRentalTime(long start, long end) {
+		long distanceTime = start - end;
+		long day = distanceTime / (24 * 60 * 60 * 1000l);
+		long minutes = (distanceTime - day * (24 * 60 * 60 * 1000l) / (1000 * 60));
+		return minutes;
 	}
 
 }

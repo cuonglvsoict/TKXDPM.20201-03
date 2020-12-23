@@ -7,6 +7,16 @@
 
 ---
 
+# LAB 05 - Design principles & concepts
+
+
+---
+
+# LAB 04 - Unit test
+
+
+---
+
 # LAB 03 - Programming
 ## Tasks
 * Lập trình theo bản thiết kế đã có
