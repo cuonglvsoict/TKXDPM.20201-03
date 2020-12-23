@@ -35,5 +35,4 @@ public class HomeController extends BaseController {
     public static Bike getBikeById(String bikeId) {
         return DBInteraction.getBikeById(bikeId);
     }
-
 }

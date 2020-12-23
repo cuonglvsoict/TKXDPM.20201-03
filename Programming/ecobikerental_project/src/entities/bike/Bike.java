@@ -14,17 +14,9 @@ public abstract class Bike {
 	private String imgPath;
 	protected static FeesCalculatorInterface feesCal;
 	
-<<<<<<< HEAD
 	public static Bike getBikeById(String bikeId) {
 		return DBInteraction.getBikeById(bikeId);
 	}
-=======
-//	public static Bike getBikeById(String bikeId) {
-//		DBConnection conn = DBConnection.getDBConnection();
-//		return conn.getBikeById(bikeId);
-//	}
->>>>>>> f74712872f23523ca509a80ce5ad845c88952a88
-	
 	public abstract String bikeTypeToString();
 	
 	public Bike(int bikeType) {
