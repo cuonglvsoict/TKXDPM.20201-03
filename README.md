@@ -7,6 +7,10 @@
 
 ---
 
+# Sửa bài theo comments của cô
+* Mã nguồn cũ: Class PaymentController đang phụ thuộc vào một subsystem thanh toán cụ thể, vi phạm Dependency inversion principle.
+* Sửa chữa: Tạo Interface cho payment subsystem, PaymentController chỉ phụ thuộc vào PaymentSubsystemInterface. 
+
 # LAB 03 - Programming
 ## Tasks
 * Lập trình theo bản thiết kế đã có

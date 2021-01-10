@@ -1,7 +1,6 @@
 import java.io.IOException;
 
-import entities.bike.Bike;
-import entities.bike.feescalculator.FeesCalculator01;
+import controller.PaymentController;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import subsystem.payment.PaymentSubsystemBoundary;
 import utils.Configs;
 import views.handler.SplashScreenHandler;
 import views.handler.viewbike.HomeScreenHandler;
@@ -67,11 +67,14 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-		String params[] = { "ecobikerental", "root", "" };
-		Bike.setFeesCal(new FeesCalculator01());
-		Configs.databaseName = params[0];
-		Configs.databaseUserName = params[1];
-		Configs.databasePassword = params[2];
+		
+		// setup database
+		Configs.databaseName = "ecobikerental";
+		Configs.databaseUserName = "root";
+		Configs.databasePassword = "";
+		
+		// setup payment subsystem
+		PaymentController.setPaymentSubsystem(new PaymentSubsystemBoundary());
 		
 		launch(args);
 	}
